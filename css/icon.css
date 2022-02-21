@@ -1,0 +1,22 @@
+/* Icones */
+
+.fa-heart svg {
+    fill: #ffffff;
+}
+
+.fa-cart-shopping svg {
+    fill: #ffffff;
+}
+
+.fa-user svg {
+    fill: #ffffff;
+}
+
+svg {
+    width: 30px;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+}
