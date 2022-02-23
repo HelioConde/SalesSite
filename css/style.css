@@ -236,7 +236,7 @@ input[type=radio] {
 
 .container {
     width: 97%;
-    height: 415px;
+    height: 405px;
     transform-style: preserve-3d;
     display: flex;
     justify-content: center;
@@ -424,6 +424,26 @@ main {
     margin: 50px 0;
     justify-content: space-evenly;
     align-items: center;
+    width: 100%;
+    height: 45vh;
+    transition: all 1s;
+    opacity: 0;
+}
+
+.animClass {
+    animation-name: hoverView;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes hoverView {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 @font-face {
@@ -434,6 +454,14 @@ main {
 
 @media (max-width:1025px) {
     /* big landscape tablets, laptops, and desktops */
+
+    .container {
+        height: 310px;
+    }
+
+    .card {
+        width: 64%;
+    }
 
     #view {
         display: flex;
@@ -513,6 +541,14 @@ main {
         display: inline-block;
         padding: 13px;
         cursor: pointer;
+    }
+
+    .container {
+        height: 216px;
+    }
+
+    .card {
+        width: 64%;
     }
 
     .search {

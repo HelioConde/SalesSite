@@ -102,7 +102,29 @@ function mVendidos() {
                 <div class="button">
                     <button>COMPRAR</button>
                 </div>
-            </form>`).hide().fadeIn(500);
+            </form>`).fadeIn(500);
+            $(".promocao #view").append(`
+            <form action="view.html" class="box" alt="mVendidos `+ mVendidosLenght + `"
+                method="get">
+                <div class="titleItens" title="`+ data.mVendidos[mVendidosLenght].nome + `">` + data.mVendidos[mVendidosLenght].nome + `</div>
+                <div class="boxImg"><img src="./`+ data.mVendidos[mVendidosLenght].img + `" alt=""></div>
+                <div class="preco1">`+ data.mVendidos[mVendidosLenght].preco1 + `</div>
+                <div class="preco2">`+ data.mVendidos[mVendidosLenght].preco2 + `</div>
+                <div class="button">
+                    <button>COMPRAR</button>
+                </div>
+            </form>`).fadeIn(500);
+            $(".novidade #view").append(`
+            <form action="view.html" class="box" alt="mVendidos `+ mVendidosLenght + `"
+                method="get">
+                <div class="titleItens" title="`+ data.mVendidos[mVendidosLenght].nome + `">` + data.mVendidos[mVendidosLenght].nome + `</div>
+                <div class="boxImg"><img src="./`+ data.mVendidos[mVendidosLenght].img + `" alt=""></div>
+                <div class="preco1">`+ data.mVendidos[mVendidosLenght].preco1 + `</div>
+                <div class="preco2">`+ data.mVendidos[mVendidosLenght].preco2 + `</div>
+                <div class="button">
+                    <button>COMPRAR</button>
+                </div>
+            </form>`).fadeIn(500);
             console.log(mVendidosLenght);
             mVendidosLenght++;
             mVendidos(data);
