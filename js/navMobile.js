@@ -24,3 +24,7 @@ $('#navBar').on("mouseup", function () {
         }
     }
 })
+
+$("#view").on("mousedown", function () {
+    console.log('teste');
+})

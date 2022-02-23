@@ -37,7 +37,7 @@ body {
 .logo img {
     cursor: pointer;
     margin-top: 9%;
-    width: 40%;
+    width: 30%;
     transition: all 0.5s;
 }
 
@@ -329,6 +329,26 @@ main {
 .titleItens {
     font-size: 25px;
     padding: 10px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    /* number of lines to show */
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    height: 34px;
+    transition: all 0.5s;
+}
+
+.box:hover .titleItens {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    height: 60px;
 }
 
 .boxImg img {
@@ -380,7 +400,7 @@ main {
     font-weight: bold;
     border: 2px solid black;
     border-radius: 3rem;
-    padding: 0.5rem 1.5rem;
+    padding: 4% 1%;
     cursor: pointer;
     font-size: 1.2rem;
     width: 65%;
@@ -414,6 +434,76 @@ main {
 
 @media (max-width:1025px) {
     /* big landscape tablets, laptops, and desktops */
+
+    #view {
+        display: flex;
+        display: -webkit-box;
+        align-items: center;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        font-size: .875rem;
+        width: 80%;
+    }
+
+    ::-webkit-scrollbar {
+        width: 1px;
+        height: 13px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #11171a;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    ::-webkit-scrollbar {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    #hotItens div {
+        width: 16%;
+        padding: 0 2%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: clip;
+        border-left: 2px solid rgba(0, 0, 0, 0.5);
+        border-right: 2px solid rgba(0, 0, 0, 0.5);
+    }
+
+    .box {
+        width: 30%;
+        margin: 4%;
+    }
+
+    .box .titleItens {
+        font-size: .875rem;
+    }
+
+    .box:hover {
+        width: 31%;
+    }
+
+    .angle {
+        display: inline-block;
+        position: absolute;
+    }
+
+    .angle:nth-child(1) {
+        left: 5px;
+    }
+
+    .angle:nth-child(3) {
+        right: 5px;
+    }
 }
 
 @media (max-width:600px) {
@@ -430,7 +520,7 @@ main {
         position: absolute;
         background: #4FAFE9;
         top: 270px;
-        padding: 10px;
+        padding: 10px 0;
         width: 100%;
     }
 
@@ -440,7 +530,7 @@ main {
         position: absolute;
         background: #4FAFE9;
         top: 70px;
-        padding: 10px;
+        padding: 10px 0;
         width: 100%;
     }
 
@@ -475,5 +565,51 @@ main {
     .logo img {
         margin-top: 20%;
         width: 93%;
+    }
+
+    #view {
+        display: flex;
+        display: -webkit-box;
+        align-items: center;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        font-size: .875rem;
+        width: 70%;
+    }
+
+    .box {
+        width: 55%;
+        margin: 4%;
+    }
+
+    .angle {
+        display: inline-block;
+        position: absolute;
+    }
+
+    .angle:nth-child(1) {
+        left: 5px;
+    }
+
+    .angle:nth-child(3) {
+        right: 5px;
+    }
+
+    .boxControl {
+        margin: 0px 0;
+    }
+
+    .box .titleItens {
+        font-size: .875rem;
+    }
+
+    .button button {
+        font-size: .875rem;
+        width: 76%;
+    }
+
+    .box:hover {
+        width: 60%;
     }
 }

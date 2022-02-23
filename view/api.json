@@ -1,0 +1,496 @@
+[
+    {
+        "mVendidos": [
+            {
+                "nome": "React Aprenda praticando",
+                "descricao": "[Tirado do site leitura.com.br] React é uma biblioteca para a criação de sites, interfaces gráficas e aplicações web, criada pelo Facebook, e seu uso tem crescido muito, sendo usada por grandes empresas, como Netflix, Walmart e The New York Times. Neste livro, eminentemente prático, Maujor, com sua reconhecida didática, fornece ao leitor uma visão detalhada dos conceitos básicos e recursos da biblioteca React. Você aprenderá a desenvolver aplicativos React completos, passo a passo, desde o zero até a hospedagem em um servidor remoto. Cada capítulo apresenta um novo recurso do React, com exercícios práticos para consolidar os conceitos estudados. Destina-se a desenvolvedores com conhecimentos básicos de HTML, CSS3 e JavaScript, interessados na criação de sites tanto na área de design quanto na de desenvolvimento e programação. O livro também poderá ser útil como material de referência do React.",
+                "img": "img/0.jpg",
+                "preco1": "R$89,99",
+                "preco2": "R$69,00",
+                "detalhes": [
+                    {
+                        "Código": "L035-9786586057393",
+                        "Código de barras": "9786586057393",
+                        "Peso (kg)": "0,365",
+                        "Altura (cm)": "23,50",
+                        "Largura (cm)": "17,20",
+                        "Espessura (cm)": "1,00"
+                    }
+                ],
+                "espeficacao": [
+                    {
+                        "Autor": "Silva Samy",
+                        "Editora": "Novatec Editora",
+                        "Idioma": "PORTUGUES",
+                        "Encadernação": "BROCHURA",
+                        "Páginas": "240",
+                        "Ano de edição": "2021"
+                    }
+                ]
+            },
+            {
+                "nome": "HTML e CSS",
+                "descricao": "[Tirado do site leitura.com.br] Bem-vindo a uma melhor maneira de aprender HTML & CSS.Se você quer projetar, construir do zero ou ter mais controle sobre um site existente, este livro lhe ajudará a criar conteúdos atrativos e amigáveis. Sabemos que código pode ser um pouco intimidador, mas dê uma olhada e veja como este guia difere dos livros de programação mais tradicionais. Toda as páginas apresentam um novo tópico e maneira simples e visual, com explicações diretas acompanhadas das amostras de código. Você encontrará ajuda em como organizar e projetar as páginas do seu site para que possa criar websites fantásticos e fáceis de usar. Não é necessário ter experiência! ESTE LIVRO É PARA:Web designers e programadores;Editores online e de conteúdo;Times de blogueiros de e-commerce e marketing;Tambem para hobby. VOCÊ APRENDERÁ A:Escrever em HTML5 e CSS3;Estruturar websites;Preparar imagens, áudio, e video;Controlar tipografia e layout.",
+                "img": "img/1.jpg",
+                "preco1": "R$220,99",
+                "preco2": "R$216,00",
+                "detalhes": [
+                    {
+                        "Código": "L035-9788576089391",
+                        "Código de barras": "9788576089391",
+                        "Peso (kg)": "0,500",
+                        "Altura (cm)": "24,00",
+                        "Largura (cm)": "17,00",
+                        "Espessura (cm)": "2,00"
+                    }
+                ],
+                "espeficacao": [
+                    {
+                        "Autor": "Jon Duckett",
+                        "Editora": "Alta Books",
+                        "Idioma": "PORTUGUES",
+                        "Encadernação": "BROCHURA",
+                        "Páginas": "512",
+                        "Ano de edição": "2016"
+                    }
+                ]
+            },
+            {
+                "nome": "Javascript e Jquery",
+                "descricao": "[Tirado do site leitura.com.br] Bem-vindo ao ensino de JavaScript & jQuery. Você é iniciante em JavaScript, ou adicionou scripts a sua página web mas quer entender melhor como tudo funciona? Então este livro é para você. Não mostraremos apenas como ler e escrever em JavaScript, mas também ensinaremos o básico sobre programação de computadores de forma simples e visual. Tudo o que você precisa é entender um pouco sobre HTML e CSS. Este livro ensinará como tornar seus websites mais interativos, atraentes, e funcionais. Isso acontece ao combinar teoria de programação com exemplos que demonstram como o JavaScript e o jQuery são usados em sites populares. De forma rápida, você será capaz de pensar e programar como um profissional.APRENDA COMO:•Ler e escrever em JavaScript Tornar seus sites mais interativos;•Usar jQuery para simplificar seu código;•Recriar técnicas populares da web.TÉCNICAS INCLUSAS:•Apresentações de slides e janelas modais;•Aprimoramento de formulários e validações;•Como usar Ajax, APIs, e JSON;•Filtros, pesquisa e ordenação.",
+                "img": "img/2.jpg",
+                "preco1": "R$220,99",
+                "preco2": "R$216,00",
+                "detalhes": [
+                    {
+                        "Código": "L035-9788576089452",
+                        "Código de barras": "9788576089452",
+                        "Peso (kg)": "0,600",
+                        "Altura (cm)": "24,00",
+                        "Largura (cm)": "17,00",
+                        "Espessura (cm)": "3,00"
+                    }
+                ],
+                "espeficacao": [
+                    {
+                        "Autor": "Jon Duckett",
+                        "Editora": "Alta Books",
+                        "Idioma": "PORTUGUES",
+                        "Encadernação": "BROCHURA",
+                        "Páginas": "640",
+                        "Ano de edição": "2016"
+                    }
+                ]
+            },
+            {
+                "nome": "Aplicativos com Bootstrap e Angular",
+                "descricao": "[Tirado do site leitura.com.br] Dividida em três partes, a obra apresenta, na primeira parte, uma breve introdução ao JavaScript e ao jQuery, linguagens fundamentais ao desenvolvimento web, e mostra as funcionalidades de HTML5. Apresenta, ainda, o framework Bootstrap, utilizado para construir interfaces web e implementar o design responsivo, e o Phonegap e o Phonegap Build, ferramentas de execução do aplicativo diretamente no dispositivo móvel. Também aborda o AngularJS e o Angular, duas versões do framework utilizadas para programação de aplicativos de página única multiplataforma.",
+                "img": "img/3.jpg",
+                "preco1": "R$220,99",
+                "preco2": "R$216,00",
+                "detalhes": [
+                    {
+                        "Código": "L035-9788536533025",
+                        "Código de barras": "9788536533025",
+                        "Peso (kg)": "0,416",
+                        "Altura (cm)": "24,00",
+                        "Largura (cm)": "17,00",
+                        "Espessura (cm)": "1,38"
+                    }
+                ],
+                "espeficacao": [
+                    {
+                        "Autor": "Diego Zabot",
+                        "Editora": "Editora Érica",
+                        "Idioma": "PORTUGUES",
+                        "Encadernação": "BROCHURA",
+                        "Páginas": "264",
+                        "Ano de edição": "2020"
+                    }
+                ]
+            },
+            {
+                "nome": "Construindo aplicações com NodeJS",
+                "descricao": "[Tirado do site leitura.com.br] O NodeJS é uma poderosa plataforma para construir de forma rápida e fácil aplicações de rede escaláveis. Utiliza um modelo de single thread, faz I/O não bloqueante, por isso trabalha sempre de forma assíncrona. Construindo aplicações com NodeJS abrange: • O que é o NodeJS e o que pode ser feito com essa plataforma. • Conceitos de bancos de dados relacional e não relacional. • Conceitos de REST e boas práticas para um bom design de API. • Como construir, testar e otimizar uma API RESTful com NodeJS, aplicando boas práticas. Você aprenderá a construir uma API RESTful funcional e escalável, com testes unitários e otimizações para melhor performance, que estará pronta para ser publicada seguindo boas práticas. Será utilizada uma estrutura robusta, testável e expansível, que poderá servir como base para implementar outras aplicações HTTP com NodeJS. Além disso, será possível revisar conceitos importantes sobre as novas features da linguagem JavaScript e aprender a utilizar bancos de dados.",
+                "img": "img/4.jpg",
+                "preco1": "R$89,99",
+                "preco2": "R$75,00",
+                "detalhes": [
+                    {
+                        "Código": "L035-9786586057539",
+                        "Código de barras": "9786586057539",
+                        "Peso (kg)": "0,400",
+                        "Altura (cm)": "23,50",
+                        "Largura (cm)": "17,20",
+                        "Espessura (cm)": "1,20"
+                    }
+                ],
+                "espeficacao": [
+                    {
+                        "Autor": "Moraes Bruno",
+                        "Editora": "Novatec Editora",
+                        "Idioma": "PORTUGUES",
+                        "Encadernação": "BROCHURA",
+                        "Páginas": "272",
+                        "Ano de edição": "2021"
+                    }
+                ]
+            },
+            {
+                "nome": "Desenvolvendo com AngularJS",
+                "descricao": "[Tirado do site leitura.com.br] Se quiser começar a trabalhar com o AngularJS, seja em um projeto secundário, como uma ferramenta adicional, ou em sua atividade principal, este guia prático irá ensinar você a usar esse metaframework, passo a passo, incluindo desde os conceitos básicos até os mais avançados. No final do livro, você saberá como desenvolver uma aplicação de grande porte, de fácil manutenção e de alto desempenho usando o AngularJS.",
+                "img": "img/4.jpg",
+                "preco1": "R$89,99",
+                "preco2": "R$75,00",
+                "detalhes": [
+                    {
+                        "Código": "L035-9788575224090",
+                        "Código de barras": "9788575224090",
+                        "Peso (kg)": "0,550",
+                        "Altura (cm)": "23,50",
+                        "Largura (cm)": "17,00",
+                        "Espessura (cm)": "1,70"
+                    }
+                ],
+                "espeficacao": [
+                    {
+                        "Autor": "Green Brad",
+                        "Editora": "Novatec Editora",
+                        "Idioma": "PORTUGUES",
+                        "Encadernação": "BROCHURA",
+                        "Páginas": "352",
+                        "Ano de edição": "2014"
+                    }
+                ]
+            }
+        ],
+        "hot": [
+            {
+                "nome": "Primeiros passos com React",
+                "descricao": "[Tirado do site leitura.com.br] Saia trabalhando de imediato com React: a tecnologia de código aberto do Facebook para construir rapidamente aplicações web sofisticadas. Com este guia prático, o desenvolvedor web Stoyan Stefanov ensina você a construir componentes – os blocos de construção básicos da React – e a organizá-los em aplicações de larga escala, viáveis do ponto de vista da manutenção. Se você tiver familiaridade com a sintaxe básica de JavaScript, estará pronto para começar.",
+                "img": "img/5.jpg",
+                "preco1": "R$220,99",
+                "preco2": "R$210,00",
+                "detalhes": [
+                    {
+                        "Código": "L035-9788575225202",
+                        "Código de barras": "9788575225202",
+                        "Peso (kg)": "0,400",
+                        "Altura (cm)": "23,50",
+                        "Largura (cm)": "17,00",
+                        "Espessura (cm)": "1,20"
+                    }
+                ],
+                "espeficacao": [
+                    {
+                        "Autor": "Stefanov Stoyan",
+                        "Editora": "Novatec Editora",
+                        "Idioma": "PORTUGUES",
+                        "Encadernação": "BROCHURA",
+                        "Páginas": "248",
+                        "Ano de edição": "2016"
+                    }
+                ]
+            },
+            {
+                "nome": "Desenvolvimento de aplicações web com Angular",
+                "descricao": "[Tirado do site leitura.com.br] Este livro procura levar ao leitor os conhecimentos sobre o Angular capazes de permitir desenvolvimento de seus próprios projetos. Os diversos exemplos apresentam a instalação/configuração das ferramentas utilizadas no desenvolvimento, criação de tabelas com ngRepeat, vínculo de dados com ngModel, lista de opções criadas com ngOptions, validação de dados de formulários, definição de classes em Angular , construção de Web Service em PHP. O projeto final envolve consumo de Web Service para manipulação de banco de dados. O leitor também verá uma pequena introdução à linguagem TypeScript, base do Angular desde a versão 2. Para abranger tanto usuários do Windows quanto do Linux, a instalação e configuração das ferramentas é apresentada nesses dois ambientes. Todos os capítulos são apresentados de forma ricamente ilustrada, além de constarem diversos exercícios práticos. Em função da didática empregada, o livro abrange tanto iniciantes quanto profissionais já experientes, sendo indicado para adoção em cursos técnicos/profissionalizantes.",
+                "img": "img/5.jpg",
+                "preco1": "R$220,99",
+                "preco2": "R$210,00",
+                "detalhes": [
+                    {
+                        "Código": "L035-9788550803777",
+                        "Código de barras": "9788550803777",
+                        "Peso (kg)": "0,400",
+                        "Altura (cm)": "24,00",
+                        "Largura (cm)": "17,00",
+                        "Espessura (cm)": "1,80"
+                    }
+                ],
+                "espeficacao": [
+                    {
+                        "Autor": "William Pereira Alves",
+                        "Editora": "Alta Books",
+                        "Idioma": "PORTUGUES",
+                        "Encadernação": "BROCHURA",
+                        "Páginas": "384",
+                        "Ano de edição": "2019"
+                    }
+                ]
+            }
+        ],
+        "outros": [
+            {
+                "nome": "Lorem ipsum 6",
+                "descricao": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. At magnam eligendi cumque nobis ipsa, deleniti beatae vel odit, id corrupti a possimus. Molestias tenetur quis dolor inventore hic optio nemo.",
+                "img": "img/lorem.png",
+                "preco1": "R$220,99",
+                "preco2": "R$210,00",
+                "detalhes": [
+                    {
+                        "Código": "L035-01234567891011",
+                        "Código de barras": "01234567891011",
+                        "Peso (kg)": "0,400",
+                        "Altura (cm)": "23,50",
+                        "Largura (cm)": "17,00",
+                        "Espessura (cm)": "1,20"
+                    }
+                ],
+                "espeficacao": [
+                    {
+                        "Autor": "Lorem ipsum",
+                        "Editora": "Lorem ipsum",
+                        "Idioma": "PORTUGUES",
+                        "Encadernação": "BROCHURA",
+                        "Páginas": "248",
+                        "Ano de edição": "2016"
+                    }
+                ]
+            },
+            {
+                "nome": "Lorem ipsum 7",
+                "descricao": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. At magnam eligendi cumque nobis ipsa, deleniti beatae vel odit, id corrupti a possimus. Molestias tenetur quis dolor inventore hic optio nemo.",
+                "img": "img/lorem.png",
+                "preco1": "R$220,99",
+                "preco2": "R$210,00",
+                "detalhes": [
+                    {
+                        "Código": "L035-01234567891011",
+                        "Código de barras": "01234567891011",
+                        "Peso (kg)": "0,400",
+                        "Altura (cm)": "23,50",
+                        "Largura (cm)": "17,00",
+                        "Espessura (cm)": "1,20"
+                    }
+                ],
+                "espeficacao": [
+                    {
+                        "Autor": "Lorem ipsum",
+                        "Editora": "Lorem ipsum",
+                        "Idioma": "PORTUGUES",
+                        "Encadernação": "BROCHURA",
+                        "Páginas": "248",
+                        "Ano de edição": "2016"
+                    }
+                ]
+            },
+            {
+                "nome": "Lorem ipsum 8",
+                "descricao": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. At magnam eligendi cumque nobis ipsa, deleniti beatae vel odit, id corrupti a possimus. Molestias tenetur quis dolor inventore hic optio nemo.",
+                "img": "img/lorem.png",
+                "preco1": "R$220,99",
+                "preco2": "R$210,00",
+                "detalhes": [
+                    {
+                        "Código": "L035-01234567891011",
+                        "Código de barras": "01234567891011",
+                        "Peso (kg)": "0,400",
+                        "Altura (cm)": "23,50",
+                        "Largura (cm)": "17,00",
+                        "Espessura (cm)": "1,20"
+                    }
+                ],
+                "espeficacao": [
+                    {
+                        "Autor": "Lorem ipsum",
+                        "Editora": "Lorem ipsum",
+                        "Idioma": "PORTUGUES",
+                        "Encadernação": "BROCHURA",
+                        "Páginas": "248",
+                        "Ano de edição": "2016"
+                    }
+                ]
+            },
+            {
+                "nome": "Lorem ipsum 9",
+                "descricao": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. At magnam eligendi cumque nobis ipsa, deleniti beatae vel odit, id corrupti a possimus. Molestias tenetur quis dolor inventore hic optio nemo.",
+                "img": "img/lorem.png",
+                "preco1": "R$220,99",
+                "preco2": "R$210,00",
+                "detalhes": [
+                    {
+                        "Código": "L035-01234567891011",
+                        "Código de barras": "01234567891011",
+                        "Peso (kg)": "0,400",
+                        "Altura (cm)": "23,50",
+                        "Largura (cm)": "17,00",
+                        "Espessura (cm)": "1,20"
+                    }
+                ],
+                "espeficacao": [
+                    {
+                        "Autor": "Lorem ipsum",
+                        "Editora": "Lorem ipsum",
+                        "Idioma": "PORTUGUES",
+                        "Encadernação": "BROCHURA",
+                        "Páginas": "248",
+                        "Ano de edição": "2016"
+                    }
+                ]
+            },
+            {
+                "nome": "Lorem ipsum 10",
+                "descricao": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. At magnam eligendi cumque nobis ipsa, deleniti beatae vel odit, id corrupti a possimus. Molestias tenetur quis dolor inventore hic optio nemo.",
+                "img": "img/lorem.png",
+                "preco1": "R$220,99",
+                "preco2": "R$210,00",
+                "detalhes": [
+                    {
+                        "Código": "L035-01234567891011",
+                        "Código de barras": "01234567891011",
+                        "Peso (kg)": "0,400",
+                        "Altura (cm)": "23,50",
+                        "Largura (cm)": "17,00",
+                        "Espessura (cm)": "1,20"
+                    }
+                ],
+                "espeficacao": [
+                    {
+                        "Autor": "Lorem ipsum",
+                        "Editora": "Lorem ipsum",
+                        "Idioma": "PORTUGUES",
+                        "Encadernação": "BROCHURA",
+                        "Páginas": "248",
+                        "Ano de edição": "2016"
+                    }
+                ]
+            },
+            {
+                "nome": "Lorem ipsum 11",
+                "descricao": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. At magnam eligendi cumque nobis ipsa, deleniti beatae vel odit, id corrupti a possimus. Molestias tenetur quis dolor inventore hic optio nemo.",
+                "img": "img/lorem.png",
+                "preco1": "R$220,99",
+                "preco2": "R$210,00",
+                "detalhes": [
+                    {
+                        "Código": "L035-01234567891011",
+                        "Código de barras": "01234567891011",
+                        "Peso (kg)": "0,400",
+                        "Altura (cm)": "23,50",
+                        "Largura (cm)": "17,00",
+                        "Espessura (cm)": "1,20"
+                    }
+                ],
+                "espeficacao": [
+                    {
+                        "Autor": "Lorem ipsum",
+                        "Editora": "Lorem ipsum",
+                        "Idioma": "PORTUGUES",
+                        "Encadernação": "BROCHURA",
+                        "Páginas": "248",
+                        "Ano de edição": "2016"
+                    }
+                ]
+            },
+            {
+                "nome": "Lorem ipsum 12",
+                "descricao": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. At magnam eligendi cumque nobis ipsa, deleniti beatae vel odit, id corrupti a possimus. Molestias tenetur quis dolor inventore hic optio nemo.",
+                "img": "img/lorem.png",
+                "preco1": "R$220,99",
+                "preco2": "R$210,00",
+                "detalhes": [
+                    {
+                        "Código": "L035-01234567891011",
+                        "Código de barras": "01234567891011",
+                        "Peso (kg)": "0,400",
+                        "Altura (cm)": "23,50",
+                        "Largura (cm)": "17,00",
+                        "Espessura (cm)": "1,20"
+                    }
+                ],
+                "espeficacao": [
+                    {
+                        "Autor": "Lorem ipsum",
+                        "Editora": "Lorem ipsum",
+                        "Idioma": "PORTUGUES",
+                        "Encadernação": "BROCHURA",
+                        "Páginas": "248",
+                        "Ano de edição": "2016"
+                    }
+                ]
+            },
+            {
+                "nome": "Lorem ipsum 13",
+                "descricao": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. At magnam eligendi cumque nobis ipsa, deleniti beatae vel odit, id corrupti a possimus. Molestias tenetur quis dolor inventore hic optio nemo.",
+                "img": "img/lorem.png",
+                "preco1": "R$220,99",
+                "preco2": "R$210,00",
+                "detalhes": [
+                    {
+                        "Código": "L035-01234567891011",
+                        "Código de barras": "01234567891011",
+                        "Peso (kg)": "0,400",
+                        "Altura (cm)": "23,50",
+                        "Largura (cm)": "17,00",
+                        "Espessura (cm)": "1,20"
+                    }
+                ],
+                "espeficacao": [
+                    {
+                        "Autor": "Lorem ipsum",
+                        "Editora": "Lorem ipsum",
+                        "Idioma": "PORTUGUES",
+                        "Encadernação": "BROCHURA",
+                        "Páginas": "248",
+                        "Ano de edição": "2016"
+                    }
+                ]
+            },
+            {
+                "nome": "Lorem ipsum 15",
+                "descricao": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. At magnam eligendi cumque nobis ipsa, deleniti beatae vel odit, id corrupti a possimus. Molestias tenetur quis dolor inventore hic optio nemo.",
+                "img": "img/lorem.png",
+                "preco1": "R$220,99",
+                "preco2": "R$210,00",
+                "detalhes": [
+                    {
+                        "Código": "L035-01234567891011",
+                        "Código de barras": "01234567891011",
+                        "Peso (kg)": "0,400",
+                        "Altura (cm)": "23,50",
+                        "Largura (cm)": "17,00",
+                        "Espessura (cm)": "1,20"
+                    }
+                ],
+                "espeficacao": [
+                    {
+                        "Autor": "Lorem ipsum",
+                        "Editora": "Lorem ipsum",
+                        "Idioma": "PORTUGUES",
+                        "Encadernação": "BROCHURA",
+                        "Páginas": "248",
+                        "Ano de edição": "2016"
+                    }
+                ]
+            },
+            {
+                "nome": "Lorem ipsum 6",
+                "descricao": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. At magnam eligendi cumque nobis ipsa, deleniti beatae vel odit, id corrupti a possimus. Molestias tenetur quis dolor inventore hic optio nemo.",
+                "img": "img/lorem.png",
+                "preco1": "R$220,99",
+                "preco2": "R$210,00",
+                "detalhes": [
+                    {
+                        "Código": "L035-01234567891011",
+                        "Código de barras": "01234567891011",
+                        "Peso (kg)": "0,400",
+                        "Altura (cm)": "23,50",
+                        "Largura (cm)": "17,00",
+                        "Espessura (cm)": "1,20"
+                    }
+                ],
+                "espeficacao": [
+                    {
+                        "Autor": "Lorem ipsum",
+                        "Editora": "Lorem ipsum",
+                        "Idioma": "PORTUGUES",
+                        "Encadernação": "BROCHURA",
+                        "Páginas": "248",
+                        "Ano de edição": "2016"
+                    }
+                ]
+            }
+        ]
+    }
+]
