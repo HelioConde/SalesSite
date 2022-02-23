@@ -532,6 +532,14 @@ main {
     .angle:nth-child(3) {
         right: 5px;
     }
+
+    #view {
+        height: 60vh;
+    }
+
+    .button button {
+        width: 75%;
+    }
 }
 
 @media (max-width:600px) {
@@ -647,5 +655,9 @@ main {
 
     .box:hover {
         width: 60%;
+    }
+
+    #view {
+        height: 55vh;
     }
 }

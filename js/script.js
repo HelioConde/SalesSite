@@ -3,6 +3,9 @@ var mVendidosLenght = 0;
 var soma = 0;
 var limit = false;
 
+$(".logo").on("mouseup", function () {
+    window.location = "./";
+});
 
 $("#navHotItens").on("mouseup", function () {
     console.log(navItens)

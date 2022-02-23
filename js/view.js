@@ -1,4 +1,8 @@
 $(function () {
+    $(".logo").on("mouseup", function () {
+        window.location = "./";
+    });
+
     $.ajax({
         url: "https://www.postman.com/collections/63f6202751f61498ebdf",
         dataType: 'json',
