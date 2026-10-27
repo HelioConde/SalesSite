@@ -18,6 +18,10 @@ const cases = [
   { id: 'home-small', size: [320, 720], route: './' },
   { id: 'product-desktop', size: [1440, 900], route: './?produto=mVendidos-01' },
   { id: 'product-mobile', size: [390, 844], route: './?produto=mVendidos-01' },
+  { id: 'added-cart-desktop', size: [1440, 900], route: './', action: 'add-product' },
+  { id: 'added-cart-mobile', size: [390, 844], route: './', action: 'add-product' },
+  { id: 'added-cart-small', size: [320, 700], route: './', action: 'add-product' },
+  { id: 'added-cart-detail-mobile', size: [390, 844], route: './?produto=mVendidos-03', action: 'add-product-detail' },
   { id: 'cart-mobile', size: [390, 844], route: './?pagina=carrinho', state: 'cart' },
   { id: 'checkout-desktop', size: [1440, 900], route: './?pagina=checkout', state: 'cart' },
   { id: 'favorites-mobile', size: [390, 844], route: './?pagina=favoritos', state: 'favorites' },
@@ -60,6 +64,14 @@ try {
     try {
       await page.goto(new URL(scenario.route, base).href, { waitUntil: 'networkidle', timeout: 30000 });
       await page.locator('.loading').waitFor({ state: 'hidden', timeout: 15000 }).catch(() => {});
+      if (scenario.action === 'add-product') {
+        await page.locator('#catalog-results [data-add="mVendidos-01"]').click();
+        await page.locator('#cart-feedback').waitFor({ state: 'visible' });
+      }
+      if (scenario.action === 'add-product-detail') {
+        await page.locator('.detail-actions [data-add="mVendidos-03"]').click();
+        await page.locator('#cart-feedback').waitFor({ state: 'visible' });
+      }
       if (scenario.action === 'no-results') {
         await page.locator('#header-query').fill('nao-existe-este-item-qa-2026');
       }
@@ -107,6 +119,8 @@ try {
           horizontalOverflow: fullWidth > width + 1,
           productCards: document.querySelectorAll('#catalog-results .product-card').length,
           activeBanner: document.querySelector('#banner-carousel')?.dataset.activeSlide || null,
+          cartFeedbackVisible: !document.getElementById('cart-feedback')?.hidden,
+          cartCount: document.getElementById('cart-badge')?.textContent || '0',
           brokenImages: [...document.images].filter(image => image.complete && image.naturalWidth === 0)
             .map(image => image.getAttribute('src')).slice(0, 20),
           carouselImages: [...document.querySelectorAll('[data-banner-slide] img')]

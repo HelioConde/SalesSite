@@ -59,5 +59,18 @@
     </div>
   </footer>
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <aside id="cart-feedback" class="cart-feedback" aria-label="Confirmação de item adicionado ao carrinho" hidden>
+    <div class="cart-feedback-head">
+      <strong><span class="cart-feedback-check" aria-hidden="true">✓</span> Adicionado ao carrinho</strong>
+      <button class="cart-feedback-close" type="button" aria-label="Fechar confirmação do carrinho" data-close-feedback>×</button>
+    </div>
+    <div id="cart-feedback-content"></div>
+    <div class="cart-feedback-actions">
+      <a class="btn btn-primary" href="./?pagina=carrinho">Ver carrinho <span aria-hidden="true">→</span></a>
+      <button class="btn btn-outline" type="button" data-close-feedback>Continuar comprando</button>
+    </div>
+    <small>Compra demonstrativa, sem cobrança real.</small>
+  </aside>
+  <span id="cart-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></span>
 </body>
 </html>

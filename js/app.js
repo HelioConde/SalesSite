@@ -1,7 +1,7 @@
 import { setupBannerCarousel } from './carousel.js';
 import { loadCatalog, findProduct, searchCatalog } from './catalog.js';
 import { getCart, getFavorites, addToCart, setQuantity, toggleFavorite, clearCart, cartCount } from './storage.js';
-import { escapeHTML, productCard, cards, renderDetail, renderCart, renderFavorites, renderCheckout, emptyState } from './ui.js';
+import { escapeHTML, money, productCard, cards, renderDetail, renderCart, renderFavorites, renderCheckout, emptyState } from './ui.js';
 
 const main = document.getElementById('conteudo');
 const headerSearch = document.getElementById('header-search');
@@ -10,10 +10,16 @@ const navToggle = document.getElementById('menu-toggle');
 const mobileNav = document.getElementById('mobile-nav');
 const cartBadge = document.getElementById('cart-badge');
 const toast = document.getElementById('toast');
+const cartFeedback = document.getElementById('cart-feedback');
+const cartFeedbackContent = document.getElementById('cart-feedback-content');
+const cartAnnouncement = document.getElementById('cart-announcement');
+const cartLink = document.querySelector('[data-nav="carrinho"]');
 let products = [];
 let confirmed = false;
 let noticeTimeout;
 let stopBanner = () => {};
+let cartFeedbackTimer;
+const addButtonTimers = new WeakMap();
 
 function routeParams() { return new URLSearchParams(window.location.search); }
 function stateFromUrl() {
@@ -38,7 +44,46 @@ function notice(text) {
   clearTimeout(noticeTimeout);
   noticeTimeout = setTimeout(() => { toast.hidden = true; }, 3300);
 }
-function updateBadge() { cartBadge.textContent = String(cartCount()); }
+function closeCartFeedback() {
+  clearTimeout(cartFeedbackTimer);
+  cartFeedback.hidden = true;
+}
+function showCartFeedback(product, button) {
+  // Produto é do catálogo local validado; escapar o texto antes de construir HTML.
+  const quantity = getCart()[product.id] || 0;
+  cartFeedbackContent.innerHTML =
+    '<img class="cart-feedback-cover" src="./' + escapeHTML(product.image) + '" alt="Capa de ' + escapeHTML(product.name) + '" width="68" height="86">' +
+    '<div class="cart-feedback-info"><strong>' + escapeHTML(product.name) + '</strong>' +
+    '<span>' + quantity + (quantity === 1 ? ' unidade no carrinho' : ' unidades no carrinho') + '</span>' +
+    '<b>' + money(product.price * quantity) + '</b></div>';
+  cartFeedback.hidden = false;
+  cartAnnouncement.textContent = product.name + ' adicionado ao carrinho. ' +
+    quantity + (quantity === 1 ? ' unidade.' : ' unidades.') + ' Use Ver carrinho para revisar os itens.';
+  clearTimeout(cartFeedbackTimer);
+  // Não desaparece enquanto o visitante passa o mouse ou interage com o cartão.
+  cartFeedbackTimer = window.setTimeout(() => {
+    if (!cartFeedback.matches(':hover') && !cartFeedback.contains(document.activeElement)) closeCartFeedback();
+  }, 6500);
+  if (button) {
+    clearTimeout(addButtonTimers.get(button));
+    button.classList.add('is-added');
+    button.textContent = '✓ Adicionado!';
+    const t = window.setTimeout(() => {
+      if (!button.isConnected) return;
+      button.classList.remove('is-added');
+      button.textContent = 'Adicionar ao carrinho';
+    }, 1900);
+    addButtonTimers.set(button, t);
+  }
+}
+function updateBadge(animate = false) {
+  cartBadge.textContent = String(cartCount());
+  if (animate && cartLink) {
+    cartLink.classList.remove('cart-just-updated');
+    void cartLink.offsetWidth;
+    cartLink.classList.add('cart-just-updated');
+  }
+}
 function closeMenu() {
   navToggle.setAttribute('aria-expanded', 'false');
   navToggle.setAttribute('aria-label', 'Abrir menu');
@@ -134,6 +179,7 @@ function renderHome() {
   stopBanner = setupBannerCarousel(document.getElementById('banner-carousel'));
 }
 function renderRoute() {
+  closeCartFeedback();
   stopBanner();
   stopBanner = () => {};
   const params = routeParams();
@@ -180,6 +226,18 @@ navToggle.addEventListener('click', () => {
 });
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape' && !mobileNav.hidden) { closeMenu(); navToggle.focus(); }
+  if (event.key === 'Escape' && !cartFeedback.hidden) closeCartFeedback();
+});
+cartFeedback.addEventListener('click', event => {
+  if (event.target.closest('[data-close-feedback]')) closeCartFeedback();
+});
+cartFeedback.addEventListener('mouseleave', () => {
+  if (!cartFeedback.hidden) {
+    clearTimeout(cartFeedbackTimer);
+    cartFeedbackTimer = setTimeout(() => {
+      if (!cartFeedback.contains(document.activeElement)) closeCartFeedback();
+    }, 2600);
+  }
 });
 document.addEventListener('click', event => {
   if (!mobileNav.hidden && !event.target.closest('#mobile-nav, #menu-toggle')) closeMenu();
@@ -230,8 +288,9 @@ main.addEventListener('click', event => {
   if (add) {
     const product = activeProduct(add.dataset.add);
     if (product?.available) {
-      addToCart(product.id); updateBadge();
-      notice(product.name + ' adicionado ao carrinho demonstrativo.');
+      addToCart(product.id);
+      updateBadge(true);
+      showCartFeedback(product, add);
     }
   } else if (fav) {
     const product = activeProduct(fav.dataset.favorite);

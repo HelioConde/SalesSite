@@ -192,3 +192,70 @@ test('movimento reduzido inicia rotação pausada e mantém botões manuais', as
   await page.locator('[data-banner-next]').click();
   await expect(page.locator('#banner-carousel')).toHaveAttribute('data-active-slide','2');
 });
+
+
+test('feedback do carrinho mostra capa, quantidade, preço e link acessível', async ({ page }) => {
+  await page.goto('/');
+  const add = page.locator('#catalog-results [data-add="mVendidos-01"]');
+  await add.click();
+  const feedback = page.locator('#cart-feedback');
+  await expect(feedback).toBeVisible();
+  await expect(feedback.locator('.cart-feedback-head')).toContainText('Adicionado ao carrinho');
+  await expect(feedback.locator('.cart-feedback-info')).toContainText('React Aprenda praticando');
+  await expect(feedback.locator('.cart-feedback-info')).toContainText('1 unidade no carrinho');
+  await expect(feedback.locator('.cart-feedback-info')).toContainText('R$ 69,00');
+  await expect(feedback.locator('img')).toHaveAttribute('src', './img/0.jpg');
+  await expect(add).toHaveText('✓ Adicionado!');
+  await expect(page.locator('#cart-badge')).toHaveText('1');
+  await expect(feedback.getByRole('link', { name: /Ver carrinho/ })).toHaveAttribute('href', './?pagina=carrinho');
+  await feedback.getByRole('link', { name: /Ver carrinho/ }).click();
+  await expect(page.getByRole('heading', { name: 'Meu carrinho' })).toBeVisible();
+  await expect(feedback).toBeHidden();
+});
+
+test('adicionar o mesmo produto duas vezes atualiza quantidade e ação de fechar', async ({ page }) => {
+  await page.goto('/');
+  const add = page.locator('#catalog-results [data-add="mVendidos-02"]');
+  await add.click();
+  await add.click();
+  await expect(page.locator('#cart-feedback .cart-feedback-info')).toContainText('2 unidades no carrinho');
+  await expect(page.locator('#cart-feedback .cart-feedback-info')).toContainText('R$ 432,00');
+  await expect(page.locator('#cart-badge')).toHaveText('2');
+  await page.getByRole('button', { name: 'Fechar confirmação do carrinho' }).click();
+  await expect(page.locator('#cart-feedback')).toBeHidden();
+  await expect(page.locator('#cart-badge')).toHaveText('2');
+  await expect(page.locator('#catalog-results .product-card')).toHaveCount(18);
+});
+
+test('página de detalhes oferece o mesmo feedback e escape fecha confirmação', async ({ page }) => {
+  await page.goto('/?produto=mVendidos-03');
+  await page.locator('.detail-actions [data-add]').click();
+  await expect(page.locator('#cart-feedback')).toBeVisible();
+  await expect(page.locator('#cart-feedback .cart-feedback-info')).toContainText('Javascript e Jquery');
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#cart-feedback')).toBeHidden();
+  await expect(page.locator('#cart-badge')).toHaveText('1');
+});
+
+test('carrinho separa preço unitário e botão remover sem texto colado', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('#catalog-results [data-add="mVendidos-01"]').click();
+  await page.goto('/?pagina=carrinho');
+  const meta = page.locator('.cart-line-meta').first();
+  await expect(meta.locator('span')).toContainText('R$ 69,00 / unidade');
+  await expect(meta.getByRole('button', { name: 'Remover' })).toBeVisible();
+  const hasGap = await meta.evaluate(el => {
+    const price = el.querySelector('span').getBoundingClientRect();
+    const remove = el.querySelector('button').getBoundingClientRect();
+    return remove.left > price.right + 4 || remove.top > price.bottom + 4;
+  });
+  expect(hasGap).toBe(true);
+});
+
+test('feedback não causa overflow horizontal em viewport pequena', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 700 });
+  await page.goto('/');
+  await page.locator('#catalog-results [data-add="mVendidos-01"]').click();
+  await expect(page.locator('#cart-feedback')).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
+});

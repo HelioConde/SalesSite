@@ -84,3 +84,6 @@ Detalhes: [Guia QA e captura](docs/QA.md).
 
 ### Auditoria de conforto visual
 O Playwright fotografa 15 cenários e informa contraste, imagens quebradas e slide ativo. Consulte qa-snapshots/index.html e o artefato salessite-visual-qa no GitHub Actions.
+
+### Feedback contextual do carrinho
+Ao adicionar um livro, o site mostra confirmação com capa, nome, quantidade, subtotal e botão **Ver carrinho**. O botão adicionado também muda temporariamente de estado e o contador do cabeçalho recebe destaque. A confirmação pode ser fechada sem desfazer a operação. O Playwright fotografa esse estado em desktop e mobile.

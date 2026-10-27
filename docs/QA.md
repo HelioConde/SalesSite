@@ -64,3 +64,10 @@ Não fotografe dados pessoais, senhas ou sessões autenticadas. Não envie scree
 - report.json passa a registrar activeBanner, carouselImages, brokenImages, contrast, offenders, erros e requisições com falha.
 - Garantir as fotos originais c1/c2/c3 no dist/img após o deploy GitHub Pages.
 - Testar também swipe mobile e preferência por movimento reduzido.
+
+## Feedback de carrinho e capturas visuais — 27/10/2026
+- Novo painel de confirmação do carrinho inclui capa, nome, quantidade, subtotal e ações úteis.
+- 19 cenários de captura, incluindo feedback após adicionar na home desktop, mobile, viewport 320px e detalhe mobile.
+- Validar que o painel permanece visível durante a interação e não causa scroll horizontal.
+- Regressão Playwright cobre botão temporariamente confirmado, múltiplas adições, fechamento, Escape e navegação pelo CTA.
+- Capturas são tiradas do navegador Chromium real, não geradas por IA.
