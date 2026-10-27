@@ -1,22 +1,22 @@
 # SalesSite — Design System v2
 
 ## Direção visual
-Vitrine de livros de tecnologia leve e objetiva, com identidade azul, tipografia legível e ações de compra demonstrativa sem confusão com comércio real.
+Vitrine de livros de tecnologia com identidade azul dessaturada, contraste confortável e imagens do carrossel original preservadas. O destaque visual é a leitura, sem grandes áreas de azul saturado ou brilhos artificiais.
 
 ## Tokens principais
 O arquivo fonte dos tokens é css/style.css (:root).
 
 | Token | Valor | Uso |
 |---|---|---|
-| --bg | #f5f8fc | Fundo da página |
+| --bg | #f4f6f7 | Fundo da página |
 | --surface | #fff | Superfícies e cards |
-| --text | #152c44 | Texto principal |
-| --muted | #587082 | Texto auxiliar |
-| --brand | #1477c9 | Ação primária |
-| --brand-dark | #09538f | Hover e links |
-| --deep | #10314e | Faixa superior e rodapé |
-| --border | #dbe6ef | Divisórias |
-| --soft | #eaf4fd | Superfície destacada |
+| --text | #273542 | Texto principal |
+| --muted | #526374 | Texto auxiliar |
+| --brand | #426a8c | Ação primária |
+| --brand-dark | #294b6a | Hover e links |
+| --deep | #273b4e | Faixa superior e rodapé |
+| --border | #dce3e9 | Divisórias |
+| --soft | #edf2f5 | Superfície destacada |
 | --radius | 16px | Cards |
 | --shadow | 0 12px 32px rgba(20,51,79,.08) | Elevação |
 
@@ -51,3 +51,17 @@ Espaçamentos: 4/8/12/16/24/32/48 px. Conteúdo até 1160 px.
 3. Não adicionar preço não presente nos dados legados.
 4. Favoritos e carrinho usam somente dados no navegador.
 5. Produto acessível por URL compartilhável usando o parâmetro produto.
+
+
+## Carrossel de destaque (versão 2026)
+- Preserva img/c1.jpg, img/c2.jpg e img/c3.jpg do projeto original.
+- Módulo js/carousel.js com botões anteriores, próximos, indicadores e pausa.
+- Rotação a cada 6,5 segundos, suspensa em interação, foco, janela em segundo plano e movimento reduzido.
+- Controles por teclado, toque e mouse; somente o slide ativo aceita foco.
+- Fotos dessaturadas e gradiente escuro para leitura do conteúdo.
+- Capturas automáticas incluem slides 2, 3 e pausado.
+
+## Contraste e conforto
+- Azul de ação #426a8c tem contraste de aproximadamente 5,72:1 com branco (texto normal WCAG AA).
+- Fundos amplos: cinza muito claro. Barras informativas: cinza-azulado claro.
+- Preservar contraste e foco visível para acessibilidade.

@@ -1,3 +1,4 @@
+import { setupBannerCarousel } from './carousel.js';
 import { loadCatalog, findProduct, searchCatalog } from './catalog.js';
 import { getCart, getFavorites, addToCart, setQuantity, toggleFavorite, clearCart, cartCount } from './storage.js';
 import { escapeHTML, productCard, cards, renderDetail, renderCart, renderFavorites, renderCheckout, emptyState } from './ui.js';
@@ -12,6 +13,7 @@ const toast = document.getElementById('toast');
 let products = [];
 let confirmed = false;
 let noticeTimeout;
+let stopBanner = () => {};
 
 function routeParams() { return new URLSearchParams(window.location.search); }
 function stateFromUrl() {
@@ -66,18 +68,42 @@ function renderResults() {
     emptyState('Nenhum resultado encontrado', 'Experimente buscar outra palavra ou ajustar os filtros.',
       '<button type="button" class="btn btn-primary" data-clear>Limpar filtros</button>');
 }
+/**
+ * Recupera as três imagens do carrossel original de 2022 e mantém os
+ * conteúdos atuais do catálogo logo abaixo.
+ */
+function renderBannerCarousel() {
+  const banners = [
+    { image: './img/c1.jpg', tag: 'Uma nova página', title: 'Ideias para seu próximo projeto', description: 'Explore livros de tecnologia e descubra novas possibilidades.' },
+    { image: './img/c2.jpg', tag: 'Aprenda algo novo', title: 'Conhecimento no seu ritmo', description: 'Do HTML ao React: encontre inspiração para continuar evoluindo.' },
+    { image: './img/c3.jpg', tag: 'Sempre em destaque', title: 'Transforme curiosidade em criação', description: 'Organize seus favoritos e experimente nosso catálogo.' }
+  ];
+  return '<section class="banner-carousel" id="banner-carousel" aria-label="Destaques da loja" aria-roledescription="carrossel" tabindex="0" data-active-slide="1">' +
+    '<div class="banner-stage">' +
+    banners.map((banner, i) =>
+      '<article class="banner-slide" data-banner-slide data-position="other" aria-roledescription="slide" aria-label="' + (i + 1) + ' de 3">' +
+      '<img src="' + banner.image + '" width="1200" height="520" alt="" decoding="async"' + (i ? ' loading="lazy"' : ' fetchpriority="high"') + '>' +
+      '<div class="banner-copy"><span class="banner-kicker">' + banner.tag + '</span>' +
+      '<h1>' + banner.title + '</h1><p>' + banner.description + '</p>' +
+      '<a class="banner-cta" href="#catalogo">Explorar livros <span aria-hidden="true">→</span></a></div></article>'
+    ).join('') +
+    '</div><div class="banner-controls">' +
+    '<button type="button" data-banner-prev class="banner-arrow" aria-label="Banner anterior">←</button>' +
+    '<div class="banner-dots" aria-label="Selecionar banner">' +
+    banners.map((_, i) => '<button type="button" data-banner-dot aria-label="Mostrar banner ' + (i + 1) + ' de 3" aria-current="false"></button>').join('') +
+    '</div><button type="button" data-banner-next class="banner-arrow" aria-label="Próximo banner">→</button>' +
+    '<button type="button" data-banner-play class="banner-pause" aria-label="Pausar rotação do carrossel">Ⅱ Pausar rotação</button>' +
+    '<span class="sr-only" data-banner-status aria-live="polite" aria-atomic="true"></span>' +
+    '</div></section>';
+}
+
 function renderHome() {
   updateTitle('Livros e tecnologia', 'Encontre livros de tecnologia e explore um e-commerce demonstrativo sem pagamentos reais.');
   queryField.value = filters.query;
   const featured = products.filter(p => p.available).slice(0, 6);
   const actual = products.filter(p => p.available).length;
   main.innerHTML =
-    '<section class="hero"><div class="hero-copy"><span class="hero-tag">✦ Sua próxima descoberta começa aqui</span>' +
-      '<h1>O conhecimento que impulsiona suas <em>ideias.</em></h1>' +
-      '<p>Explore livros de programação, desenvolvimento web e tecnologia em uma experiência de loja interativa.</p>' +
-      '<div class="hero-actions"><a class="btn btn-primary" href="#catalogo">Explorar catálogo</a><span>✓ Projeto 100% demonstrativo</span></div></div>' +
-      '<div class="hero-art" aria-hidden="true"><div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>' +
-      '<div class="hero-icon">⌘</div><div class="hero-glow"></div><span class="hero-code">&lt; / &gt;</span></div></section>' +
+    renderBannerCarousel() +
     '<div class="trust-strip"><span>📚 <strong>' + actual + '</strong> livros identificados</span>' +
       '<span>♡ Favoritos salvos localmente</span><span>🛒 Carrinho para simulação</span></div>' +
     '<section class="featured-section" aria-labelledby="featured-title"><div class="section-heading"><div>' +
@@ -105,8 +131,11 @@ function renderHome() {
   document.getElementById('filter-price').value = filters.range;
   document.getElementById('filter-sort').value = filters.sort;
   renderResults();
+  stopBanner = setupBannerCarousel(document.getElementById('banner-carousel'));
 }
 function renderRoute() {
+  stopBanner();
+  stopBanner = () => {};
   const params = routeParams();
   const id = params.get('produto');
   const page = params.get('pagina');
