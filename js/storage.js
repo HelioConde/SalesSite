@@ -13,7 +13,8 @@ function write(key, value) {
   try { canStore()?.setItem(PREFIX + key, JSON.stringify(value)); }
   catch (_) { /* Modo privado ou quota cheia: compras continuam só nesta sessão. */ }
 }
-const validId = id => typeof id === 'string' && /^[a-z0-9-]+$/.test(id);
+// IDs legados (ex.: mVendidos-01) possuem maiúsculas; restringir aos caracteres seguros, não apenas lowercase.
+const validId = id => typeof id === 'string' && /^[A-Za-z0-9-]+$/.test(id);
 function normalizeCart(value) {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
   return Object.fromEntries(Object.entries(value).filter(([id,qty]) =>
