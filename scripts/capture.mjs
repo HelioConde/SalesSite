@@ -25,6 +25,10 @@ const cases = [
   { id: 'cart-mobile', size: [390, 844], route: './?pagina=carrinho', state: 'cart' },
   { id: 'checkout-desktop', size: [1440, 900], route: './?pagina=checkout', state: 'cart' },
   { id: 'favorites-mobile', size: [390, 844], route: './?pagina=favoritos', state: 'favorites' },
+  { id: 'favorites-desktop', size: [1440, 900], route: './?pagina=favoritos', state: 'favorites' },
+  { id: 'legacy-examples-desktop', size: [1440, 900], route: './?categoria=Demonstra%C3%A7%C3%A3o' },
+  { id: 'checkout-mobile-review', size: [390, 844], route: './?pagina=checkout', state: 'cart' },
+  { id: 'footer-links-desktop', size: [1440, 900], route: './', action: 'footer' },
   { id: 'search-empty-mobile', size: [390, 844], route: './', action: 'no-results' },
   { id: 'menu-open-mobile', size: [390, 844], route: './', action: 'menu' }
 ];
@@ -75,6 +79,9 @@ try {
       if (scenario.action === 'no-results') {
         await page.locator('#header-query').fill('nao-existe-este-item-qa-2026');
       }
+      if (scenario.action === 'footer') {
+        await page.locator('.footer').scrollIntoViewIfNeeded();
+      }
       if (scenario.action === 'menu') {
         await page.locator('#menu-toggle').click();
       }
@@ -121,6 +128,23 @@ try {
           activeBanner: document.querySelector('#banner-carousel')?.dataset.activeSlide || null,
           cartFeedbackVisible: !document.getElementById('cart-feedback')?.hidden,
           cartCount: document.getElementById('cart-badge')?.textContent || '0',
+          coverOverflow: [...document.querySelectorAll('.product-image-wrap')].flatMap(wrap => {
+            const bounds = wrap.getBoundingClientRect();
+            const image = wrap.querySelector('img');
+            if (!image) return [];
+            const rect = image.getBoundingClientRect();
+            const outside = rect.bottom > bounds.bottom + 1 || rect.top < bounds.top - 1 ||
+              rect.left < bounds.left - 1 || rect.right > bounds.right + 1;
+            return outside ? [{ image: image.getAttribute('src'), outside: true }] : [];
+          }).slice(0, 10),
+          checkoutEditableControls: document.querySelectorAll('.checkout-panel [data-qty], .checkout-panel [data-remove]').length,
+          footerLinksOverlap: (() => {
+            const links = [...document.querySelectorAll('.footer-tools a')];
+            const rectangles = links.map(el => el.getBoundingClientRect());
+            return rectangles.some((r,i) => rectangles.slice(i + 1).some(q =>
+              Math.max(r.left,q.left) < Math.min(r.right,q.right) - 2 &&
+              Math.max(r.top,q.top) < Math.min(r.bottom,q.bottom) - 2));
+          })(),
           brokenImages: [...document.images].filter(image => image.complete && image.naturalWidth === 0)
             .map(image => image.getAttribute('src')).slice(0, 20),
           carouselImages: [...document.querySelectorAll('[data-banner-slide] img')]
@@ -167,7 +191,7 @@ try {
     } finally {
       rows.push(record);
       await context.close();
-      console.log((record.error || record.metrics?.horizontalOverflow || record.metrics?.brokenImages?.length || record.contrast?.some(c => !c.pass) || errors.length ? 'ATENÇÃO ' : 'OK ') + scenario.id);
+      console.log((record.error || record.metrics?.horizontalOverflow || record.metrics?.brokenImages?.length || record.metrics?.coverOverflow?.length || record.metrics?.footerLinksOverlap || record.metrics?.checkoutEditableControls || record.contrast?.some(c => !c.pass) || errors.length ? 'ATENÇÃO ' : 'OK ') + scenario.id);
     }
   }
 } finally {
@@ -181,16 +205,19 @@ const report = {
   cases: rows,
   totals: {
     count: rows.length,
-    failed: rows.filter(item => item.error || item.errors.length || item.failedRequests.length || item.metrics?.horizontalOverflow || item.metrics?.brokenImages?.length || item.contrast?.some(x => !x.pass)).length
+    failed: rows.filter(item => item.error || item.errors.length || item.failedRequests.length || item.metrics?.horizontalOverflow || item.metrics?.brokenImages?.length || item.metrics?.coverOverflow?.length || item.metrics?.footerLinksOverlap || item.metrics?.checkoutEditableControls || item.contrast?.some(x => !x.pass)).length
   }
 };
 await writeFile(path.join(output, 'report.json'), JSON.stringify(report, null, 2) + '\n');
 const tiles = rows.map(item => {
-  const status = item.error || item.errors.length || item.failedRequests.length || item.metrics?.horizontalOverflow || item.metrics?.brokenImages?.length || item.contrast?.some(x => !x.pass)
+  const status = item.error || item.errors.length || item.failedRequests.length || item.metrics?.horizontalOverflow || item.metrics?.brokenImages?.length || item.metrics?.coverOverflow?.length || item.metrics?.footerLinksOverlap || item.metrics?.checkoutEditableControls || item.contrast?.some(x => !x.pass)
     ? '<span class="status bad">Revisar</span>' : '<span class="status good">OK</span>';
   const description = [
     item.metrics?.horizontalOverflow ? 'Overflow horizontal identificado' : '',
     item.metrics?.brokenImages?.length ? 'Imagens quebradas: ' + item.metrics.brokenImages.join(', ') : '',
+    item.metrics?.coverOverflow?.length ? 'Capas invadindo conteúdo: ' + item.metrics.coverOverflow.length : '',
+    item.metrics?.footerLinksOverlap ? 'Links do rodapé sobrepostos' : '',
+    item.metrics?.checkoutEditableControls ? 'Checkout indevidamente editável' : '',
     item.contrast?.some(x => !x.pass) ? 'Contraste baixo: ' + item.contrast.filter(x => !x.pass).map(x => x.label + '=' + x.ratio).join(', ') : '',
     item.error || '',
     ...item.errors, ...item.failedRequests

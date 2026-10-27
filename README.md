@@ -87,3 +87,10 @@ O Playwright fotografa 15 cenários e informa contraste, imagens quebradas e sli
 
 ### Feedback contextual do carrinho
 Ao adicionar um livro, o site mostra confirmação com capa, nome, quantidade, subtotal e botão **Ver carrinho**. O botão adicionado também muda temporariamente de estado e o contador do cabeçalho recebe destaque. A confirmação pode ser fechada sem desfazer a operação. O Playwright fotografa esse estado em desktop e mobile.
+
+## Ajustes da auditoria final (27/10/2026)
+- O catálogo inicial foi simplificado para mostrar 8 livros; os 10 exemplos do projeto original continuam disponíveis no menu Itens demonstrativos e no filtro Todas as categorias (18 registros no JSON).
+- Corrigida a contenção de capas e o espaçamento entre elementos em cards, favoritos e rodapé.
+- Checkout demonstrativo agora apenas revisa quantidades e totais. A edição permanece no carrinho.
+- O carrossel mantém fotos e controles originais sem mostrar texto cortado nos slides laterais.
+- Playwright verifica enquadramento das capas, separação dos links, edição no checkout e cenários adicionais de screenshots.

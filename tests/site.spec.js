@@ -5,8 +5,8 @@ test('início carrega catálogo estático com produtos e sem erros', async ({ pa
   page.on('pageerror', error => failures.push(error.message));
   await page.goto('/');
   await expect(page.getByRole('heading', { name: /Catálogo completo/ })).toBeVisible();
-  await expect(page.locator('#catalog-results .product-card')).toHaveCount(18);
-  await expect(page.getByText('18 produtos encontrados')).toBeVisible();
+  await expect(page.locator('#catalog-results .product-card')).toHaveCount(8);
+  await expect(page.getByText('8 produtos encontrados')).toBeVisible();
   await expect(page.getByText('Projeto demonstrativo', { exact: false }).first()).toBeVisible();
   expect(failures).toEqual([]);
 });
@@ -34,7 +34,7 @@ test('produto possui URL direta e detalhes', async ({ page }) => {
 
 test('favoritos persistem ao navegar', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('#catalog-results .product-card')).toHaveCount(18);
+  await expect(page.locator('#catalog-results .product-card')).toHaveCount(8);
   await page.locator('#catalog-results [data-favorite="mVendidos-01"]').click();
   await page.goto('/?pagina=favoritos');
   await expect(page.locator('.product-grid .product-card')).toHaveCount(1);
@@ -224,7 +224,7 @@ test('adicionar o mesmo produto duas vezes atualiza quantidade e ação de fecha
   await page.getByRole('button', { name: 'Fechar confirmação do carrinho' }).click();
   await expect(page.locator('#cart-feedback')).toBeHidden();
   await expect(page.locator('#cart-badge')).toHaveText('2');
-  await expect(page.locator('#catalog-results .product-card')).toHaveCount(18);
+  await expect(page.locator('#catalog-results .product-card')).toHaveCount(8);
 });
 
 test('página de detalhes oferece o mesmo feedback e escape fecha confirmação', async ({ page }) => {
@@ -258,4 +258,75 @@ test('feedback não causa overflow horizontal em viewport pequena', async ({ pag
   await page.locator('#catalog-results [data-add="mVendidos-01"]').click();
   await expect(page.locator('#cart-feedback')).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
+});
+
+
+test('vitrine apresenta 8 livros e preserva 10 itens legados em filtro próprio', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('#catalog-results .product-card')).toHaveCount(8);
+  await expect(page.locator('#catalog-results .pill-muted')).toHaveCount(0);
+  await expect(page.locator('#catalog-note')).toContainText('10 itens do acervo demonstrativo');
+  await page.locator('#catalog-note a').click();
+  await expect(page.locator('#catalog-results .product-card')).toHaveCount(10);
+  await expect(page.getByText('10 produtos encontrados')).toBeVisible();
+  await expect(page.locator('#catalog-results .pill-muted')).toHaveCount(10);
+  await expect(page.locator('#catalog-results [data-add]')).toHaveCount(0);
+  await page.locator('#filter-category').selectOption('todos');
+  await expect(page.locator('#catalog-results .product-card')).toHaveCount(18);
+  await page.locator('#filter-category').selectOption('Livros de tecnologia');
+  await expect(page.locator('#catalog-results .product-card')).toHaveCount(8);
+});
+
+test('busca e botão limpar filtros preservam vitrine de livros', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('#header-query').fill('xyz-sem-resultado');
+  await expect(page.getByRole('heading', { name: 'Nenhum resultado encontrado' })).toBeVisible();
+  await page.locator('[data-clear]').click();
+  await expect(page.locator('#filter-category')).toHaveValue('Livros de tecnologia');
+  await expect(page.locator('#catalog-results .product-card')).toHaveCount(8);
+});
+
+test('capa do favorito fica contida no enquadramento, sem invadir informações', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('#catalog-results [data-favorite="mVendidos-03"]').click();
+  await page.goto('/?pagina=favoritos');
+  await expect(page.locator('.product-grid .product-card')).toHaveCount(1);
+  await expect(page.locator('.product-card img')).toBeVisible();
+  const m = await page.locator('.product-grid .product-card').first().evaluate(card => {
+    const image = card.querySelector('.product-image-wrap img').getBoundingClientRect();
+    const wrap = card.querySelector('.product-image-wrap').getBoundingClientRect();
+    const label = card.querySelector('.product-body .eyebrow').getBoundingClientRect();
+    return { overflowBottom: image.bottom - wrap.bottom, overlapText: image.bottom - label.top };
+  });
+  expect(m.overflowBottom, JSON.stringify(m)).toBeLessThanOrEqual(1);
+  expect(m.overlapText, JSON.stringify(m)).toBeLessThanOrEqual(0);
+});
+
+test('revisão do checkout é somente leitura e permanece acessível', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('#catalog-results [data-add="mVendidos-01"]').click();
+  await page.goto('/?pagina=checkout');
+  await expect(page.getByRole('heading', { name: 'Finalização demonstrativa' })).toBeVisible();
+  await expect(page.getByText('Quantidade: 1')).toBeVisible();
+  await expect(page.locator('.checkout-panel [data-qty]')).toHaveCount(0);
+  await expect(page.locator('.checkout-panel [data-remove]')).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Voltar ao carrinho' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Confirmar simulação' })).toBeEnabled();
+});
+
+test('navegação no rodapé possui espaços visíveis entre os links', async ({ page }) => {
+  await page.goto('/');
+  const result = await page.locator('.footer-tools').evaluate(footer => {
+    const links = [...footer.querySelectorAll('a')];
+    return links.map(link => link.getBoundingClientRect()).every((r, i, all) =>
+      all.slice(i + 1).every(q => r.right <= q.left - 5 || q.right <= r.left - 5 || r.bottom <= q.top - 5 || q.bottom <= r.top - 5));
+  });
+  expect(result).toBe(true);
+});
+
+test('carrossel não mostra textos cortados nos banners laterais', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('[data-banner-slide].is-active .banner-copy')).toBeVisible();
+  await expect(page.locator('[data-banner-slide]:not(.is-active) .banner-copy')).toHaveCount(2);
+  await expect(page.locator('[data-banner-slide]:not(.is-active) .banner-copy').first()).toBeHidden();
 });

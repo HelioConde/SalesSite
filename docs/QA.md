@@ -71,3 +71,12 @@ Não fotografe dados pessoais, senhas ou sessões autenticadas. Não envie scree
 - Validar que o painel permanece visível durante a interação e não causa scroll horizontal.
 - Regressão Playwright cobre botão temporariamente confirmado, múltiplas adições, fechamento, Escape e navegação pelo CTA.
 - Capturas são tiradas do navegador Chromium real, não geradas por IA.
+
+## Auditoria final da interface (27/10/2026)
+- Vitrine inicial exibe somente 8 livros; os 10 exemplos legados são preservados em Demonstração e podem ser vistos também escolhendo Todas as categorias.
+- Garantir que imagens de cartões e favoritos não extrapolem a área da capa.
+- A revisão do checkout deve ser somente leitura; alterações e remoções acontecem na etapa anterior, no carrinho.
+- As três prévias laterais do banner não devem mostrar textos ou CTAs cortados.
+- Conferir links separados no rodapé (desktop e mobile).
+- Capturas extras: favoritos desktop, exemplos, checkout mobile e rodapé.
+- Capturas e relatórios devem incluir coverOverflow, footerLinksOverlap e checkoutEditableControls, além de JavaScript/overflow/imagens/contraste.
