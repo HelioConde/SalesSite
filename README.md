@@ -1,40 +1,72 @@
 <div align="center">
-  <h1>🛍️ SalesSite — Vitrine de produtos</h1>
-  <p><strong>Estudo de loja virtual em HTML, CSS, JavaScript e jQuery, com catálogo carregado de um arquivo JSON.</strong></p>
-  <p><img alt="JavaScript" src="https://img.shields.io/badge/JavaScript%20%2B%20jQuery-Frontend-F7DF1E?logo=javascript&logoColor=black"> <img alt="Status" src="https://img.shields.io/badge/status-estudo%20web-64748b"></p>
+  <img src="./icon/logo.png" alt="" width="70">
+  <h1>SalesSite</h1>
+  <p><strong>Vitrine de livros de tecnologia com busca, filtros, favoritos e carrinho — 100% estática.</strong></p>
+  <p>HTML · CSS · JavaScript Modules · JSON · Playwright · GitHub Pages</p>
 </div>
 
-## Sobre
+## Sobre o projeto
 
-O projeto experimenta a apresentação de produtos em uma página comercial, com **cards**, listagens de itens e navegação própria. O código JavaScript usa AJAX para carregar os dados locais e `localStorage` para armazenar informação de navegação.
+Projeto originalmente criado em 2022 e modernizado para estudo de front-end e experiência de e-commerce. Não oferece compras reais, estoque, cadastro, checkout comercial ou processamento de pagamentos.
 
-Não existe integração de pagamentos ou processamento de compras confirmado nesta documentação: **é uma vitrine demonstrativa**, não um e-commerce homologado.
+### Funcionalidades
+- Catálogo carregado com fetch a partir de data/products.json, sem depender do Postman.
+- 18 registros preservados (8 livros identificados + 10 exemplos sinalizados).
+- Busca imediata, filtro por categoria e preço, ordenação por preço, nome e destaque.
+- Página compartilhável por URL, por exemplo: ?produto=mVendidos-01.
+- Favoritos e carrinho persistidos no localStorage.
+- Quantidades, subtotais e total ilustrativo.
+- Finalização de simulação sem coleta de dados nem cobrança real.
+- Layout responsivo, menu mobile e estados de erro e vazio.
+- Playwright e workflow de publicação controlada no GitHub Pages.
 
-## Estrutura
+## Executar
 
-| Arquivo | Finalidade |
-| --- | --- |
-| `index.html` | Entrada e vitrine |
-| `view/showItens.html` | Página de itens |
-| `view/api.json` | Dados demonstrativos em JSON |
-| `js/script.js` | Interação com catálogo e navegação |
-| `js/navMobile.js` | Comportamento da navegação mobile |
-| `css/`, `img/`, `icon/`, `font/` | Estilos e recursos gráficos |
+Não abra index.html diretamente pelo protocolo file://: a leitura do JSON exige HTTP.
 
-## Como abrir
+Com Python: python -m http.server 8000
 
-```bash
-git clone https://github.com/HelioConde/SalesSite.git
-cd SalesSite
-python -m http.server 8000
-```
+Abra http://localhost:8000/
 
-Abra `http://localhost:8000`. Um servidor local é recomendado porque requisições AJAX a arquivos JSON podem não funcionar ao abrir o HTML diretamente por `file://`.
+Para os testes, instale Node.js 22+ e Python 3 e execute:
 
-## Estado e próximos passos
+1. npm install
+2. npx playwright install chromium
+3. npm test
 
-**Projeto legado de estudo.** Para transformá-lo em produto real, seria necessário construir backend seguro para pedidos, estoque, autenticação e pagamentos, com testes automatizados e requisitos legais aplicáveis.
+A suíte utiliza servidor HTTP na porta 4173.
 
-Uma retomada visual poderia revisar responsividade, semântica do HTML, navegação por teclado, carregamento de imagens e tratamento de erro nas consultas.
+## Arquitetura
+
+| Pasta / arquivo | Responsabilidade |
+|---|---|
+| index.html | Shell e metadados |
+| css/style.css | Tokens, componentes e responsividade |
+| js/app.js | Rotas, eventos e renderização |
+| js/catalog.js | Busca, filtros e carregamento |
+| js/ui.js | Cards e páginas da loja |
+| js/storage.js | Carrinho e favoritos locais |
+| data/products.json | Catálogo normalizado |
+| view/api.json | Dados legados preservados |
+| tests/site.spec.js | Fluxos automatizados |
+| .github/workflows/quality-pages.yml | QA e GitHub Pages |
+| docs/ | Baseline, design system e QA |
+
+## Hospedagem no GitHub Pages
+
+Sem banco de dados e sem servidor PHP. Em Settings > Pages, selecione GitHub Actions como origem da publicação. O workflow testa pull requests e somente publica main após os testes passarem. Branches de recurso não substituem o site automaticamente.
+
+## Limitações desta demonstração
+- Nenhuma compra ou pagamento real.
+- Preços ilustrativos, sem estoque real.
+- Dez itens antigos são exemplos, indisponíveis para adicionar ao carrinho.
+- localStorage é local a cada navegador e não sincroniza entre dispositivos.
+- Não possui autenticação, backend, pedidos reais ou painel administrativo.
+- Descrições preservadas do acervo demonstrativo; verificar direitos de uso antes de reutilização comercial.
+
+## Documentação
+- [Design System](docs/DESIGN_SYSTEM.md)
+- [Auditoria inicial](docs/BASELINE.md)
+- [Testes e publicação](docs/QA.md)
 
 Criado por [Hélio Conde](https://github.com/HelioConde).
