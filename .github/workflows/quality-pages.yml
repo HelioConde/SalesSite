@@ -1,0 +1,69 @@
+name: QA e GitHub Pages
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sales-site-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Testes de interface e regressão
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instalar dependências
+        run: npm install --no-audit --no-fund
+      - name: Instalar Chromium para testes
+        run: npx playwright install --with-deps chromium
+      - name: Executar Playwright
+        run: npm test
+      - name: Publicar relatório quando houver falha
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
+  deploy:
+    name: Publicar site (main)
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preparar arquivos públicos
+        run: |
+          mkdir -p dist/css dist/js dist/data dist/img dist/icon dist/font
+          cp index.html view.html dist/
+          cp css/style.css dist/css/
+          cp js/app.js js/catalog.js js/storage.js js/ui.js dist/js/
+          cp data/products.json dist/data/
+          cp img/0.jpg img/1.jpg img/2.jpg img/3.jpg img/4.jpg img/5.jpg img/lorem.png dist/img/
+          cp icon/logo.png dist/icon/
+          cp font/Poppins-SemiBold.ttf dist/font/
+          touch dist/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - id: deployment
+        uses: actions/deploy-pages@v4
