@@ -99,3 +99,11 @@ test('layout não apresenta scroll horizontal na viewport', async ({ page }) => 
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
   expect(overflow).toBe(false);
 });
+
+test('diagnóstico visual exige autorização antes de capturar', async ({ page }) => {
+  await page.goto('/diagnostico.html');
+  await expect(page.getByRole('heading', { name: 'Fotografe a página para investigar um problema' })).toBeVisible();
+  await expect(page.getByRole('button', { name: /Capturar aba/ })).toBeEnabled();
+  await expect(page.getByText('Nenhuma captura realizada.')).toBeVisible();
+  await expect(page.getByRole('button', { name: /Baixar informações/ })).toBeDisabled();
+});

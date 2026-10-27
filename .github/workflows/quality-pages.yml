@@ -28,12 +28,39 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Executar Playwright
         run: npm test
+      - name: Capturar páginas em desktop e mobile
+        if: success() || failure()
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/salessite-visual-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          for attempt in $(seq 1 15); do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then break; fi
+            sleep 1
+          done
+          npm run screenshots
+      - name: Resumo do diagnóstico visual
+        if: success() || failure()
+        run: |
+          if test -f qa-snapshots/report.json; then
+            node -e 'const fs=require("fs");const r=require("./qa-snapshots/report.json"); const bad=r.cases.filter(c=>c.error||c.errors.length||c.failedRequests.length||c.metrics?.horizontalOverflow);fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,"## Diagnóstico visual — SalesSite\n"+r.cases.length+" cenários, "+bad.length+" alertas\n\n"+r.cases.map(c=>"- "+c.id+": "+(bad.includes(c)?"REVISAR":"OK")+" ("+c.viewport+")").join("\n")+"\n\nBaixe o artefato salessite-visual-qa para ver as fotos.\n");'
+          fi
+      - name: Publicar capturas e galeria visual
+        if: success() || failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: salessite-visual-qa
+          path: qa-snapshots/
+          if-no-files-found: warn
+          retention-days: 21
       - name: Publicar relatório quando houver falha
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
-          path: playwright-report/
+          path: |
+            playwright-report/
+            test-results/
           retention-days: 7
 
   deploy:
@@ -53,9 +80,9 @@ jobs:
       - name: Preparar arquivos públicos
         run: |
           mkdir -p dist/css dist/js dist/data dist/img dist/icon dist/font
-          cp index.html view.html dist/
+          cp index.html view.html diagnostico.html dist/
           cp css/style.css dist/css/
-          cp js/app.js js/catalog.js js/storage.js js/ui.js dist/js/
+          cp js/app.js js/catalog.js js/storage.js js/ui.js js/manual-capture.js dist/js/
           cp data/products.json dist/data/
           cp img/0.jpg img/1.jpg img/2.jpg img/3.jpg img/4.jpg img/5.jpg img/lorem.png dist/img/
           cp icon/logo.png dist/icon/

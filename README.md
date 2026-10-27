@@ -19,6 +19,7 @@ Projeto originalmente criado em 2022 e modernizado para estudo de front-end e ex
 - Finalização de simulação sem coleta de dados nem cobrança real.
 - Layout responsivo, menu mobile e estados de erro e vazio.
 - Playwright e workflow de publicação controlada no GitHub Pages.
+- Diagnóstico visual com screenshots automáticos e captura manual autorizada por navegador.
 
 ## Executar
 
@@ -70,3 +71,11 @@ Sem banco de dados e sem servidor PHP. Em Settings > Pages, selecione GitHub Act
 - [Testes e publicação](docs/QA.md)
 
 Criado por [Hélio Conde](https://github.com/HelioConde).
+
+## 📷 Diagnóstico visual
+
+Para tirar fotos reais da loja (desktop, mobile e página inteira), rode um servidor local na porta 4173 e execute npm run screenshots. Abra qa-snapshots/index.html para visualizar todas as imagens e seus alertas; report.json inclui erros de JavaScript e possíveis áreas com overflow. O GitHub Actions também anexa um ZIP chamado salessite-visual-qa em cada execução de QA.
+
+No site, use o link Registrar problema visual para acessar diagnostico.html. A ferramenta pede permissão antes de capturar a aba escolhida e baixa uma imagem PNG localmente, que pode ser enviada ao ChatGPT. Não existe transmissão automática da tela.
+
+Detalhes: [Guia QA e captura](docs/QA.md).

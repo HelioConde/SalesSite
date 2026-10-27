@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10314e">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Diagnóstico visual — SalesSite</title>
+  <link rel="icon" href="./icon/logo.png" type="image/png">
+  <link rel="stylesheet" href="./css/style.css">
+  <script type="module" src="./js/manual-capture.js"></script>
+  <style>
+    .diagnostic{max-width:820px;margin:0 auto;padding:30px 0 80px}
+    .diagnostic-card{background:white;border:1px solid var(--border);border-radius:16px;padding:clamp(20px,4vw,36px);margin-top:25px}
+    .diagnostic ol{padding-left:24px}.diagnostic li{margin:10px 0}
+    .diagnostic-actions{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}
+    .diagnostic-preview{max-height:520px;object-fit:contain;background:#eef4f8;border:1px solid var(--border);border-radius:10px;width:100%}
+    #capture-status{background:#f1f7fc;border-radius:9px;padding:12px;min-height:46px}
+    .diagnostic-note{color:var(--muted);font-size:.9rem}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para conteúdo</a>
+  <div class="announcement">Ferramenta local · Nenhuma imagem é enviada automaticamente</div>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="./" aria-label="SalesSite, voltar ao início">
+        <img src="./icon/logo.png" alt="" width="38" height="38">
+        <span>Sales<span class="brand-accent">Site</span><small>Diagnóstico visual</small></span>
+      </a>
+      <a class="btn btn-outline" href="./" style="margin-left:auto">← Voltar à loja</a>
+    </div>
+  </header>
+  <main id="conteudo" class="container diagnostic">
+    <span class="eyebrow">Suporte visual</span>
+    <h1>Fotografe a página para investigar um problema</h1>
+    <p>Este recurso permite capturar uma imagem real da aba do navegador. Depois, envie o PNG no ChatGPT para analisar visualmente o que está errado.</p>
+    <section class="diagnostic-card" aria-labelledby="instructions-title">
+      <h2 id="instructions-title">Como usar</h2>
+      <ol>
+        <li>Mantenha o SalesSite aberto em outra aba, na tela que você quer mostrar.</li>
+        <li>Clique em <strong>Capturar aba</strong> abaixo e autorize a captura.</li>
+        <li>No seletor do navegador, escolha especificamente a aba do SalesSite.</li>
+        <li>A ferramenta salva um PNG e mostra uma prévia. Confira a imagem antes de compartilhar.</li>
+        <li>Anexe o PNG nesta conversa para avaliar bugs visuais, elementos cortados ou problemas mobile.</li>
+      </ol>
+      <p class="diagnostic-note"><strong>Privacidade:</strong> somente a aba ou janela que você selecionar será capturada. Evite selecionar telas com senhas, mensagens ou informações pessoais. Nada é enviado para servidores por esta página.</p>
+      <div class="diagnostic-actions">
+        <button class="btn btn-primary" id="capture" type="button">📷 Capturar aba</button>
+        <button class="btn btn-outline" id="metadata" type="button" disabled>Baixar informações do diagnóstico</button>
+      </div>
+      <p id="capture-status" role="status" aria-live="polite">Nenhuma captura realizada.</p>
+      <div id="preview-wrap" hidden>
+        <h3>Prévia da captura</h3>
+        <img id="preview" class="diagnostic-preview" alt="Prévia da captura realizada">
+        <p class="diagnostic-note">Se a imagem não mostrar o problema, posicione a aba no trecho correto e capture novamente.</p>
+      </div>
+    </section>
+    <section class="diagnostic-card">
+      <h2>Precisa fotografar a página inteira?</h2>
+      <p>O navegador limita esta ferramenta à área visível da aba. Para capturar toda a página automaticamente, use a suíte Playwright do projeto, com o comando abaixo, e abra a galeria gerada em <code>qa-snapshots/index.html</code>.</p>
+      <pre style="white-space:pre-wrap;overflow-wrap:anywhere;background:#f0f5f9;border-radius:8px;padding:14px">npm run screenshots</pre>
+      <p class="diagnostic-note">O Playwright também identifica erros no console e possíveis elementos saindo da largura da tela. O GitHub Actions disponibiliza as capturas como artefato nas execuções de QA.</p>
+    </section>
+  </main>
+</body>
+</html>
