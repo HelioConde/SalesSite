@@ -26,7 +26,7 @@ function stateFromUrl() {
   const p = routeParams();
   return {
     query: p.get('q') || '',
-    category: p.get('categoria') || 'todos',
+    category: p.get('categoria') || 'Livros de tecnologia',
     range: p.get('preco') || 'todos',
     sort: p.get('ordem') || 'destaque'
   };
@@ -92,7 +92,7 @@ function closeMenu() {
 function syncFilterUrl() {
   const p = new URLSearchParams();
   if (filters.query) p.set('q', filters.query);
-  if (filters.category !== 'todos') p.set('categoria', filters.category);
+  if (filters.category !== 'Livros de tecnologia') p.set('categoria', filters.category);
   if (filters.range !== 'todos') p.set('preco', filters.range);
   if (filters.sort !== 'destaque') p.set('ordem', filters.sort);
   history.replaceState(null, '', window.location.pathname + (p.toString() ? '?' + p : ''));
@@ -109,6 +109,19 @@ function renderResults() {
   const count = document.getElementById('results-count');
   if (!box || !count) return;
   count.textContent = results.length + (results.length === 1 ? ' produto encontrado' : ' produtos encontrados');
+  const note = document.getElementById('catalog-note');
+  if (note) {
+    const examples = products.filter(p => p.demo).length;
+    if (filters.category === 'Livros de tecnologia' && !filters.query) {
+      note.innerHTML = 'Exibindo livros disponíveis para simulação. ' +
+        '<a href="./?categoria=Demonstra%C3%A7%C3%A3o#catalogo">Ver ' + examples + ' itens do acervo demonstrativo →</a>';
+    } else if (filters.category === 'Demonstração') {
+      note.innerHTML = 'Estes ' + examples + ' registros foram preservados do projeto original e não podem ser adicionados ao carrinho. ' +
+        '<a href="./#catalogo">Voltar aos livros →</a>';
+    } else {
+      note.textContent = 'Catálogo de demonstração: preços ilustrativos e nenhum pagamento real.';
+    }
+  }
   box.innerHTML = results.length ? cards(results, getFavorites()) :
     emptyState('Nenhum resultado encontrado', 'Experimente buscar outra palavra ou ajustar os filtros.',
       '<button type="button" class="btn btn-primary" data-clear>Limpar filtros</button>');
@@ -168,7 +181,8 @@ function renderHome() {
       '<option value="destaque">Destaques</option><option value="preco-asc">Menor preço</option>' +
       '<option value="preco-desc">Maior preço</option><option value="nome">Nome (A–Z)</option></select></div></div>' +
       '<div class="results-header"><p id="results-count" aria-live="polite"></p>' +
-      '<span>Itens de exemplo são identificados no catálogo.</span></div>' +
+      '<span>Catálogo demonstrativo com filtros e ordenação.</span></div>' +
+      '<p id="catalog-note" class="catalog-note"></p>' +
       '<div id="catalog-results" class="product-grid"></div></section>' +
     '<section class="info-banner"><div><span class="eyebrow">Sobre este projeto</span><h2>Uma loja para experimentar, não para comprar.</h2>' +
       '<p>Os produtos e valores são ilustrativos. Você pode testar busca, filtros, favoritos e carrinho sem compartilhar dados.</p></div>' +
@@ -304,9 +318,9 @@ main.addEventListener('click', event => {
     renderRoute();
     notice('Produto removido do carrinho.');
   } else if (clear) {
-    filters = { query: '', category: 'todos', range: 'todos', sort: 'destaque' };
+    filters = { query: '', category: 'Livros de tecnologia', range: 'todos', sort: 'destaque' };
     queryField.value = '';
-    document.getElementById('filter-category').value = 'todos';
+    document.getElementById('filter-category').value = 'Livros de tecnologia';
     document.getElementById('filter-price').value = 'todos';
     document.getElementById('filter-sort').value = 'destaque';
     syncFilterUrl();

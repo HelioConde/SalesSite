@@ -43,7 +43,7 @@ jobs:
         if: success() || failure()
         run: |
           if test -f qa-snapshots/report.json; then
-            node -e 'const fs=require("fs");const r=require("./qa-snapshots/report.json"); const bad=r.cases.filter(c=>c.error||c.errors.length||c.failedRequests.length||c.metrics?.horizontalOverflow);fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,"## Diagnóstico visual — SalesSite\n"+r.cases.length+" cenários, "+bad.length+" alertas\n\n"+r.cases.map(c=>"- "+c.id+": "+(bad.includes(c)?"REVISAR":"OK")+" ("+c.viewport+")").join("\n")+"\n\nBaixe o artefato salessite-visual-qa para ver as fotos.\n");'
+            node -e 'const fs=require("fs");const r=require("./qa-snapshots/report.json"); const bad=r.cases.filter(c=>c.error||c.errors.length||c.failedRequests.length||c.metrics?.horizontalOverflow||c.metrics?.brokenImages?.length||c.metrics?.coverOverflow?.length||c.metrics?.footerLinksOverlap||c.metrics?.checkoutEditableControls||c.contrast?.some(x=>!x.pass));fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,"## Diagnóstico visual — SalesSite\n"+r.cases.length+" cenários, "+bad.length+" alertas\n\n"+r.cases.map(c=>"- "+c.id+": "+(bad.includes(c)?"REVISAR":"OK")+" ("+c.viewport+")").join("\n")+"\n\nBaixe o artefato salessite-visual-qa para ver as fotos.\n");'
           fi
       - name: Publicar capturas e galeria visual
         if: success() || failure()

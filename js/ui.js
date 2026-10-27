@@ -51,7 +51,7 @@ export function renderDetail(product, products, favorites) {
       '<div class="detail-image"><img src="./' + escapeHTML(product.image) + '" alt="Capa de ' + escapeHTML(product.name) + '" width="450" height="550"></div>' +
       '<div class="detail-content"><span class="eyebrow">' + escapeHTML(product.category) + '</span>' +
         '<h1>' + escapeHTML(product.name) + '</h1>' +
-        (product.demo ? '<p class="demo-note">Este registro é apenas um exemplo do projeto antigo e não está disponível para compra.</p>' : '<p class="stock-label">● Item demonstrativo disponível no carrinho</p>') +
+        (product.demo ? '<p class="demo-note">Este registro é apenas um exemplo do projeto antigo e não está disponível para compra.</p>' : '<p class="stock-label">● Disponível para adicionar ao carrinho de simulação</p>') +
         (percent && !product.demo ? '<p class="old-price">' + money(product.originalPrice) + ' · ' + percent + '% de desconto</p>' : '') +
         '<div class="detail-price">' + money(product.price) + '</div>' +
         '<p class="detail-warning">Valor ilustrativo; nenhuma cobrança será realizada.</p>' +
@@ -72,7 +72,7 @@ export function renderFavorites(products, favorites) {
       emptyState('Nenhum favorito ainda', 'Toque no coração de um produto para salvá-lo aqui.'));
 }
 
-export function cartRows(products, cart) {
+export function cartRows(products, cart, { readOnly = false } = {}) {
   return Object.entries(cart).map(([id, qty]) => {
     const p = products.find(item => item.id === id && item.available);
     if (!p) return '';
@@ -80,9 +80,11 @@ export function cartRows(products, cart) {
       '<a href="' + urlFor(p) + '"><img src="./' + escapeHTML(p.image) + '" width="90" height="110" loading="lazy" alt="Capa de ' + escapeHTML(p.name) + '"></a>' +
       '<div class="cart-line-info"><h3><a href="' + urlFor(p) + '">' + escapeHTML(p.name) + '</a></h3>' +
       '<div class="cart-line-meta"><span>' + money(p.price) + ' / unidade</span>' +
-      '<button class="text-button" type="button" data-remove="' + escapeHTML(id) + '">Remover</button></div></div>' +
-      '<div class="cart-line-right"><label for="qty-' + escapeHTML(id) + '">Quantidade</label>' +
-      '<input id="qty-' + escapeHTML(id) + '" aria-label="Quantidade de ' + escapeHTML(p.name) + '" type="number" min="1" max="99" step="1" value="' + qty + '" data-qty="' + escapeHTML(id) + '">' +
+      (readOnly ? '' : '<button class="text-button" type="button" data-remove="' + escapeHTML(id) + '">Remover</button>') + '</div></div>' +
+      '<div class="cart-line-right">' +
+      (readOnly ? '<span class="review-quantity">Quantidade: ' + qty + '</span>' :
+        '<label for="qty-' + escapeHTML(id) + '">Quantidade</label>' +
+        '<input id="qty-' + escapeHTML(id) + '" aria-label="Quantidade de ' + escapeHTML(p.name) + '" type="number" min="1" max="99" step="1" value="' + qty + '" data-qty="' + escapeHTML(id) + '">') +
       '<strong>' + money(p.price * qty) + '</strong></div></li>';
   }).filter(Boolean).join('');
 }
@@ -109,10 +111,10 @@ export function renderCheckout(products, cart, confirmed = false) {
   if (confirmed) return '<div class="checkout-result" role="status"><span aria-hidden="true">✓</span><h1>Simulação concluída!</h1>' +
     '<p>Este foi um teste de interface. Nenhum pedido foi enviado e nenhum valor foi cobrado.</p>' +
     '<a class="btn btn-primary" href="./">Voltar ao catálogo</a></div>';
-  const rows = cartRows(products, cart);
+  const rows = cartRows(products, cart, { readOnly: true });
   if (!rows) return emptyState('Nenhum item para finalizar', 'Adicione um produto ao carrinho para testar o checkout.');
   return '<div class="page-heading"><a class="back-link" href="./?pagina=carrinho">← Voltar ao carrinho</a><h1>Finalização demonstrativa</h1>' +
-    '<p>Não pedimos endereço, cartão ou dados pessoais.</p></div><div class="checkout-panel"><h2>Revisar itens</h2>' +
+    '<p>Confira os itens abaixo. Para alterar quantidades, volte ao carrinho.</p></div><div class="checkout-panel"><h2>Revisar itens</h2>' +
     '<ul class="cart-list">' + rows + '</ul><div class="summary-line total"><span>Total ilustrativo</span><strong>' + money(cartTotal(products, cart)) +
     '</strong></div><button class="btn btn-primary" data-confirm type="button">Confirmar simulação</button>' +
     '<p class="detail-warning">Ao confirmar, apenas o carrinho local será limpo. Não há compra real.</p></div>';
