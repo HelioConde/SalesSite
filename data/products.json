@@ -1,0 +1,524 @@
+[
+  {
+    "id": "mVendidos-01",
+    "name": "React Aprenda praticando",
+    "category": "Livros de tecnologia",
+    "collection": "mais-vendidos",
+    "image": "img/0.jpg",
+    "price": 69,
+    "originalPrice": 89.99,
+    "description": "[Tirado do site leitura.com.br] React é uma biblioteca para a criação de sites, interfaces gráficas e aplicações web, criada pelo Facebook, e seu uso tem crescido muito, sendo usada por grandes empresas, como Netflix, Walmart e The New York Times. Neste livro, eminentemente prático, Maujor, com sua reconhecida didática, fornece ao leitor uma visão detalhada dos conceitos básicos e recursos da biblioteca React. Você aprenderá a desenvolver aplicativos React completos, passo a passo, desde o zero até a hospedagem em um servidor remoto. Cada capítulo apresenta um novo recurso do React, com exercícios práticos para consolidar os conceitos estudados. Destina-se a desenvolvedores com conhecimentos básicos de HTML, CSS3 e JavaScript, interessados na criação de sites tanto na área de design quanto na de desenvolvimento e programação. O livro também poderá ser útil como material de referência do React.",
+    "specs": {
+      "Autor": "Silva Samy",
+      "Editora": "Novatec Editora",
+      "Idioma": "PORTUGUES",
+      "Encadernação": "BROCHURA",
+      "Páginas": "240",
+      "Ano de edição": "2021"
+    },
+    "details": {
+      "Código": "L035-9786586057393",
+      "Código de barras": "9786586057393",
+      "Peso (kg)": "0,365",
+      "Altura (cm)": "23,50",
+      "Largura (cm)": "17,20",
+      "Espessura (cm)": "1,00"
+    },
+    "demo": false,
+    "available": true,
+    "rank": 1
+  },
+  {
+    "id": "mVendidos-02",
+    "name": "HTML e CSS",
+    "category": "Livros de tecnologia",
+    "collection": "mais-vendidos",
+    "image": "img/1.jpg",
+    "price": 216,
+    "originalPrice": 220.99,
+    "description": "[Tirado do site leitura.com.br] Bem-vindo a uma melhor maneira de aprender HTML & CSS.Se você quer projetar, construir do zero ou ter mais controle sobre um site existente, este livro lhe ajudará a criar conteúdos atrativos e amigáveis. Sabemos que código pode ser um pouco intimidador, mas dê uma olhada e veja como este guia difere dos livros de programação mais tradicionais. Toda as páginas apresentam um novo tópico e maneira simples e visual, com explicações diretas acompanhadas das amostras de código. Você encontrará ajuda em como organizar e projetar as páginas do seu site para que possa criar websites fantásticos e fáceis de usar. Não é necessário ter experiência! ESTE LIVRO É PARA:Web designers e programadores;Editores online e de conteúdo;Times de blogueiros de e-commerce e marketing;Tambem para hobby. VOCÊ APRENDERÁ A:Escrever em HTML5 e CSS3;Estruturar websites;Preparar imagens, áudio, e video;Controlar tipografia e layout.",
+    "specs": {
+      "Autor": "Jon Duckett",
+      "Editora": "Alta Books",
+      "Idioma": "PORTUGUES",
+      "Encadernação": "BROCHURA",
+      "Páginas": "512",
+      "Ano de edição": "2016"
+    },
+    "details": {
+      "Código": "L035-9788576089391",
+      "Código de barras": "9788576089391",
+      "Peso (kg)": "0,500",
+      "Altura (cm)": "24,00",
+      "Largura (cm)": "17,00",
+      "Espessura (cm)": "2,00"
+    },
+    "demo": false,
+    "available": true,
+    "rank": 2
+  },
+  {
+    "id": "mVendidos-03",
+    "name": "Javascript e Jquery",
+    "category": "Livros de tecnologia",
+    "collection": "mais-vendidos",
+    "image": "img/2.jpg",
+    "price": 216,
+    "originalPrice": 220.99,
+    "description": "[Tirado do site leitura.com.br] Bem-vindo ao ensino de JavaScript & jQuery. Você é iniciante em JavaScript, ou adicionou scripts a sua página web mas quer entender melhor como tudo funciona? Então este livro é para você. Não mostraremos apenas como ler e escrever em JavaScript, mas também ensinaremos o básico sobre programação de computadores de forma simples e visual. Tudo o que você precisa é entender um pouco sobre HTML e CSS. Este livro ensinará como tornar seus websites mais interativos, atraentes, e funcionais. Isso acontece ao combinar teoria de programação com exemplos que demonstram como o JavaScript e o jQuery são usados em sites populares. De forma rápida, você será capaz de pensar e programar como um profissional.APRENDA COMO:•Ler e escrever em JavaScript Tornar seus sites mais interativos;•Usar jQuery para simplificar seu código;•Recriar técnicas populares da web.TÉCNICAS INCLUSAS:•Apresentações de slides e janelas modais;•Aprimoramento de formulários e validações;•Como usar Ajax, APIs, e JSON;•Filtros, pesquisa e ordenação.",
+    "specs": {
+      "Autor": "Jon Duckett",
+      "Editora": "Alta Books",
+      "Idioma": "PORTUGUES",
+      "Encadernação": "BROCHURA",
+      "Páginas": "640",
+      "Ano de edição": "2016"
+    },
+    "details": {
+      "Código": "L035-9788576089452",
+      "Código de barras": "9788576089452",
+      "Peso (kg)": "0,600",
+      "Altura (cm)": "24,00",
+      "Largura (cm)": "17,00",
+      "Espessura (cm)": "3,00"
+    },
+    "demo": false,
+    "available": true,
+    "rank": 3
+  },
+  {
+    "id": "mVendidos-04",
+    "name": "Aplicativos com Bootstrap e Angular",
+    "category": "Livros de tecnologia",
+    "collection": "mais-vendidos",
+    "image": "img/3.jpg",
+    "price": 216,
+    "originalPrice": 220.99,
+    "description": "[Tirado do site leitura.com.br] Dividida em três partes, a obra apresenta, na primeira parte, uma breve introdução ao JavaScript e ao jQuery, linguagens fundamentais ao desenvolvimento web, e mostra as funcionalidades de HTML5. Apresenta, ainda, o framework Bootstrap, utilizado para construir interfaces web e implementar o design responsivo, e o Phonegap e o Phonegap Build, ferramentas de execução do aplicativo diretamente no dispositivo móvel. Também aborda o AngularJS e o Angular, duas versões do framework utilizadas para programação de aplicativos de página única multiplataforma.",
+    "specs": {
+      "Autor": "Diego Zabot",
+      "Editora": "Editora Érica",
+      "Idioma": "PORTUGUES",
+      "Encadernação": "BROCHURA",
+      "Páginas": "264",
+      "Ano de edição": "2020"
+    },
+    "details": {
+      "Código": "L035-9788536533025",
+      "Código de barras": "9788536533025",
+      "Peso (kg)": "0,416",
+      "Altura (cm)": "24,00",
+      "Largura (cm)": "17,00",
+      "Espessura (cm)": "1,38"
+    },
+    "demo": false,
+    "available": true,
+    "rank": 4
+  },
+  {
+    "id": "mVendidos-05",
+    "name": "Construindo aplicações com NodeJS",
+    "category": "Livros de tecnologia",
+    "collection": "mais-vendidos",
+    "image": "img/4.jpg",
+    "price": 75,
+    "originalPrice": 89.99,
+    "description": "[Tirado do site leitura.com.br] O NodeJS é uma poderosa plataforma para construir de forma rápida e fácil aplicações de rede escaláveis. Utiliza um modelo de single thread, faz I/O não bloqueante, por isso trabalha sempre de forma assíncrona. Construindo aplicações com NodeJS abrange: • O que é o NodeJS e o que pode ser feito com essa plataforma. • Conceitos de bancos de dados relacional e não relacional. • Conceitos de REST e boas práticas para um bom design de API. • Como construir, testar e otimizar uma API RESTful com NodeJS, aplicando boas práticas. Você aprenderá a construir uma API RESTful funcional e escalável, com testes unitários e otimizações para melhor performance, que estará pronta para ser publicada seguindo boas práticas. Será utilizada uma estrutura robusta, testável e expansível, que poderá servir como base para implementar outras aplicações HTTP com NodeJS. Além disso, será possível revisar conceitos importantes sobre as novas features da linguagem JavaScript e aprender a utilizar bancos de dados.",
+    "specs": {
+      "Autor": "Moraes Bruno",
+      "Editora": "Novatec Editora",
+      "Idioma": "PORTUGUES",
+      "Encadernação": "BROCHURA",
+      "Páginas": "272",
+      "Ano de edição": "2021"
+    },
+    "details": {
+      "Código": "L035-9786586057539",
+      "Código de barras": "9786586057539",
+      "Peso (kg)": "0,400",
+      "Altura (cm)": "23,50",
+      "Largura (cm)": "17,20",
+      "Espessura (cm)": "1,20"
+    },
+    "demo": false,
+    "available": true,
+    "rank": 5
+  },
+  {
+    "id": "mVendidos-06",
+    "name": "Desenvolvendo com AngularJS",
+    "category": "Livros de tecnologia",
+    "collection": "mais-vendidos",
+    "image": "img/4.jpg",
+    "price": 75,
+    "originalPrice": 89.99,
+    "description": "[Tirado do site leitura.com.br] Se quiser começar a trabalhar com o AngularJS, seja em um projeto secundário, como uma ferramenta adicional, ou em sua atividade principal, este guia prático irá ensinar você a usar esse metaframework, passo a passo, incluindo desde os conceitos básicos até os mais avançados. No final do livro, você saberá como desenvolver uma aplicação de grande porte, de fácil manutenção e de alto desempenho usando o AngularJS.",
+    "specs": {
+      "Autor": "Green Brad",
+      "Editora": "Novatec Editora",
+      "Idioma": "PORTUGUES",
+      "Encadernação": "BROCHURA",
+      "Páginas": "352",
+      "Ano de edição": "2014"
+    },
+    "details": {
+      "Código": "L035-9788575224090",
+      "Código de barras": "9788575224090",
+      "Peso (kg)": "0,550",
+      "Altura (cm)": "23,50",
+      "Largura (cm)": "17,00",
+      "Espessura (cm)": "1,70"
+    },
+    "demo": false,
+    "available": true,
+    "rank": 6
+  },
+  {
+    "id": "hot-01",
+    "name": "Primeiros passos com React",
+    "category": "Livros de tecnologia",
+    "collection": "destaques",
+    "image": "img/5.jpg",
+    "price": 210,
+    "originalPrice": 220.99,
+    "description": "[Tirado do site leitura.com.br] Saia trabalhando de imediato com React: a tecnologia de código aberto do Facebook para construir rapidamente aplicações web sofisticadas. Com este guia prático, o desenvolvedor web Stoyan Stefanov ensina você a construir componentes – os blocos de construção básicos da React – e a organizá-los em aplicações de larga escala, viáveis do ponto de vista da manutenção. Se você tiver familiaridade com a sintaxe básica de JavaScript, estará pronto para começar.",
+    "specs": {
+      "Autor": "Stefanov Stoyan",
+      "Editora": "Novatec Editora",
+      "Idioma": "PORTUGUES",
+      "Encadernação": "BROCHURA",
+      "Páginas": "248",
+      "Ano de edição": "2016"
+    },
+    "details": {
+      "Código": "L035-9788575225202",
+      "Código de barras": "9788575225202",
+      "Peso (kg)": "0,400",
+      "Altura (cm)": "23,50",
+      "Largura (cm)": "17,00",
+      "Espessura (cm)": "1,20"
+    },
+    "demo": false,
+    "available": true,
+    "rank": 7
+  },
+  {
+    "id": "hot-02",
+    "name": "Desenvolvimento de aplicações web com Angular",
+    "category": "Livros de tecnologia",
+    "collection": "destaques",
+    "image": "img/5.jpg",
+    "price": 210,
+    "originalPrice": 220.99,
+    "description": "[Tirado do site leitura.com.br] Este livro procura levar ao leitor os conhecimentos sobre o Angular capazes de permitir desenvolvimento de seus próprios projetos. Os diversos exemplos apresentam a instalação/configuração das ferramentas utilizadas no desenvolvimento, criação de tabelas com ngRepeat, vínculo de dados com ngModel, lista de opções criadas com ngOptions, validação de dados de formulários, definição de classes em Angular , construção de Web Service em PHP. O projeto final envolve consumo de Web Service para manipulação de banco de dados. O leitor também verá uma pequena introdução à linguagem TypeScript, base do Angular desde a versão 2. Para abranger tanto usuários do Windows quanto do Linux, a instalação e configuração das ferramentas é apresentada nesses dois ambientes. Todos os capítulos são apresentados de forma ricamente ilustrada, além de constarem diversos exercícios práticos. Em função da didática empregada, o livro abrange tanto iniciantes quanto profissionais já experientes, sendo indicado para adoção em cursos técnicos/profissionalizantes.",
+    "specs": {
+      "Autor": "William Pereira Alves",
+      "Editora": "Alta Books",
+      "Idioma": "PORTUGUES",
+      "Encadernação": "BROCHURA",
+      "Páginas": "384",
+      "Ano de edição": "2019"
+    },
+    "details": {
+      "Código": "L035-9788550803777",
+      "Código de barras": "9788550803777",
+      "Peso (kg)": "0,400",
+      "Altura (cm)": "24,00",
+      "Largura (cm)": "17,00",
+      "Espessura (cm)": "1,80"
+    },
+    "demo": false,
+    "available": true,
+    "rank": 8
+  },
+  {
+    "id": "outros-01",
+    "name": "Produto demonstrativo 01",
+    "category": "Demonstração",
+    "collection": "demonstracao",
+    "image": "img/lorem.png",
+    "price": 210,
+    "originalPrice": 220.99,
+    "description": "Item de exemplo preservado do catálogo original. Sem disponibilidade para compra.",
+    "specs": {
+      "Autor": "Lorem ipsum",
+      "Editora": "Lorem ipsum",
+      "Idioma": "PORTUGUES",
+      "Encadernação": "BROCHURA",
+      "Páginas": "248",
+      "Ano de edição": "2016"
+    },
+    "details": {
+      "Código": "L035-01234567891011",
+      "Código de barras": "01234567891011",
+      "Peso (kg)": "0,400",
+      "Altura (cm)": "23,50",
+      "Largura (cm)": "17,00",
+      "Espessura (cm)": "1,20"
+    },
+    "demo": true,
+    "available": false,
+    "rank": 9
+  },
+  {
+    "id": "outros-02",
+    "name": "Produto demonstrativo 02",
+    "category": "Demonstração",
+    "collection": "demonstracao",
+    "image": "img/lorem.png",
+    "price": 210,
+    "originalPrice": 220.99,
+    "description": "Item de exemplo preservado do catálogo original. Sem disponibilidade para compra.",
+    "specs": {
+      "Autor": "Lorem ipsum",
+      "Editora": "Lorem ipsum",
+      "Idioma": "PORTUGUES",
+      "Encadernação": "BROCHURA",
+      "Páginas": "248",
+      "Ano de edição": "2016"
+    },
+    "details": {
+      "Código": "L035-01234567891011",
+      "Código de barras": "01234567891011",
+      "Peso (kg)": "0,400",
+      "Altura (cm)": "23,50",
+      "Largura (cm)": "17,00",
+      "Espessura (cm)": "1,20"
+    },
+    "demo": true,
+    "available": false,
+    "rank": 10
+  },
+  {
+    "id": "outros-03",
+    "name": "Produto demonstrativo 03",
+    "category": "Demonstração",
+    "collection": "demonstracao",
+    "image": "img/lorem.png",
+    "price": 210,
+    "originalPrice": 220.99,
+    "description": "Item de exemplo preservado do catálogo original. Sem disponibilidade para compra.",
+    "specs": {
+      "Autor": "Lorem ipsum",
+      "Editora": "Lorem ipsum",
+      "Idioma": "PORTUGUES",
+      "Encadernação": "BROCHURA",
+      "Páginas": "248",
+      "Ano de edição": "2016"
+    },
+    "details": {
+      "Código": "L035-01234567891011",
+      "Código de barras": "01234567891011",
+      "Peso (kg)": "0,400",
+      "Altura (cm)": "23,50",
+      "Largura (cm)": "17,00",
+      "Espessura (cm)": "1,20"
+    },
+    "demo": true,
+    "available": false,
+    "rank": 11
+  },
+  {
+    "id": "outros-04",
+    "name": "Produto demonstrativo 04",
+    "category": "Demonstração",
+    "collection": "demonstracao",
+    "image": "img/lorem.png",
+    "price": 210,
+    "originalPrice": 220.99,
+    "description": "Item de exemplo preservado do catálogo original. Sem disponibilidade para compra.",
+    "specs": {
+      "Autor": "Lorem ipsum",
+      "Editora": "Lorem ipsum",
+      "Idioma": "PORTUGUES",
+      "Encadernação": "BROCHURA",
+      "Páginas": "248",
+      "Ano de edição": "2016"
+    },
+    "details": {
+      "Código": "L035-01234567891011",
+      "Código de barras": "01234567891011",
+      "Peso (kg)": "0,400",
+      "Altura (cm)": "23,50",
+      "Largura (cm)": "17,00",
+      "Espessura (cm)": "1,20"
+    },
+    "demo": true,
+    "available": false,
+    "rank": 12
+  },
+  {
+    "id": "outros-05",
+    "name": "Produto demonstrativo 05",
+    "category": "Demonstração",
+    "collection": "demonstracao",
+    "image": "img/lorem.png",
+    "price": 210,
+    "originalPrice": 220.99,
+    "description": "Item de exemplo preservado do catálogo original. Sem disponibilidade para compra.",
+    "specs": {
+      "Autor": "Lorem ipsum",
+      "Editora": "Lorem ipsum",
+      "Idioma": "PORTUGUES",
+      "Encadernação": "BROCHURA",
+      "Páginas": "248",
+      "Ano de edição": "2016"
+    },
+    "details": {
+      "Código": "L035-01234567891011",
+      "Código de barras": "01234567891011",
+      "Peso (kg)": "0,400",
+      "Altura (cm)": "23,50",
+      "Largura (cm)": "17,00",
+      "Espessura (cm)": "1,20"
+    },
+    "demo": true,
+    "available": false,
+    "rank": 13
+  },
+  {
+    "id": "outros-06",
+    "name": "Produto demonstrativo 06",
+    "category": "Demonstração",
+    "collection": "demonstracao",
+    "image": "img/lorem.png",
+    "price": 210,
+    "originalPrice": 220.99,
+    "description": "Item de exemplo preservado do catálogo original. Sem disponibilidade para compra.",
+    "specs": {
+      "Autor": "Lorem ipsum",
+      "Editora": "Lorem ipsum",
+      "Idioma": "PORTUGUES",
+      "Encadernação": "BROCHURA",
+      "Páginas": "248",
+      "Ano de edição": "2016"
+    },
+    "details": {
+      "Código": "L035-01234567891011",
+      "Código de barras": "01234567891011",
+      "Peso (kg)": "0,400",
+      "Altura (cm)": "23,50",
+      "Largura (cm)": "17,00",
+      "Espessura (cm)": "1,20"
+    },
+    "demo": true,
+    "available": false,
+    "rank": 14
+  },
+  {
+    "id": "outros-07",
+    "name": "Produto demonstrativo 07",
+    "category": "Demonstração",
+    "collection": "demonstracao",
+    "image": "img/lorem.png",
+    "price": 210,
+    "originalPrice": 220.99,
+    "description": "Item de exemplo preservado do catálogo original. Sem disponibilidade para compra.",
+    "specs": {
+      "Autor": "Lorem ipsum",
+      "Editora": "Lorem ipsum",
+      "Idioma": "PORTUGUES",
+      "Encadernação": "BROCHURA",
+      "Páginas": "248",
+      "Ano de edição": "2016"
+    },
+    "details": {
+      "Código": "L035-01234567891011",
+      "Código de barras": "01234567891011",
+      "Peso (kg)": "0,400",
+      "Altura (cm)": "23,50",
+      "Largura (cm)": "17,00",
+      "Espessura (cm)": "1,20"
+    },
+    "demo": true,
+    "available": false,
+    "rank": 15
+  },
+  {
+    "id": "outros-08",
+    "name": "Produto demonstrativo 08",
+    "category": "Demonstração",
+    "collection": "demonstracao",
+    "image": "img/lorem.png",
+    "price": 210,
+    "originalPrice": 220.99,
+    "description": "Item de exemplo preservado do catálogo original. Sem disponibilidade para compra.",
+    "specs": {
+      "Autor": "Lorem ipsum",
+      "Editora": "Lorem ipsum",
+      "Idioma": "PORTUGUES",
+      "Encadernação": "BROCHURA",
+      "Páginas": "248",
+      "Ano de edição": "2016"
+    },
+    "details": {
+      "Código": "L035-01234567891011",
+      "Código de barras": "01234567891011",
+      "Peso (kg)": "0,400",
+      "Altura (cm)": "23,50",
+      "Largura (cm)": "17,00",
+      "Espessura (cm)": "1,20"
+    },
+    "demo": true,
+    "available": false,
+    "rank": 16
+  },
+  {
+    "id": "outros-09",
+    "name": "Produto demonstrativo 09",
+    "category": "Demonstração",
+    "collection": "demonstracao",
+    "image": "img/lorem.png",
+    "price": 210,
+    "originalPrice": 220.99,
+    "description": "Item de exemplo preservado do catálogo original. Sem disponibilidade para compra.",
+    "specs": {
+      "Autor": "Lorem ipsum",
+      "Editora": "Lorem ipsum",
+      "Idioma": "PORTUGUES",
+      "Encadernação": "BROCHURA",
+      "Páginas": "248",
+      "Ano de edição": "2016"
+    },
+    "details": {
+      "Código": "L035-01234567891011",
+      "Código de barras": "01234567891011",
+      "Peso (kg)": "0,400",
+      "Altura (cm)": "23,50",
+      "Largura (cm)": "17,00",
+      "Espessura (cm)": "1,20"
+    },
+    "demo": true,
+    "available": false,
+    "rank": 17
+  },
+  {
+    "id": "outros-10",
+    "name": "Produto demonstrativo 10",
+    "category": "Demonstração",
+    "collection": "demonstracao",
+    "image": "img/lorem.png",
+    "price": 210,
+    "originalPrice": 220.99,
+    "description": "Item de exemplo preservado do catálogo original. Sem disponibilidade para compra.",
+    "specs": {
+      "Autor": "Lorem ipsum",
+      "Editora": "Lorem ipsum",
+      "Idioma": "PORTUGUES",
+      "Encadernação": "BROCHURA",
+      "Páginas": "248",
+      "Ano de edição": "2016"
+    },
+    "details": {
+      "Código": "L035-01234567891011",
+      "Código de barras": "01234567891011",
+      "Peso (kg)": "0,400",
+      "Altura (cm)": "23,50",
+      "Largura (cm)": "17,00",
+      "Espessura (cm)": "1,20"
+    },
+    "demo": true,
+    "available": false,
+    "rank": 18
+  }
+]
