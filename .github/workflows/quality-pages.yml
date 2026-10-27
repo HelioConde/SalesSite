@@ -82,9 +82,9 @@ jobs:
           mkdir -p dist/css dist/js dist/data dist/img dist/icon dist/font
           cp index.html view.html diagnostico.html dist/
           cp css/style.css dist/css/
-          cp js/app.js js/catalog.js js/storage.js js/ui.js js/manual-capture.js dist/js/
+          cp js/app.js js/carousel.js js/catalog.js js/storage.js js/ui.js js/manual-capture.js dist/js/
           cp data/products.json dist/data/
-          cp img/0.jpg img/1.jpg img/2.jpg img/3.jpg img/4.jpg img/5.jpg img/lorem.png dist/img/
+          cp img/0.jpg img/1.jpg img/2.jpg img/3.jpg img/4.jpg img/5.jpg img/lorem.png img/c1.jpg img/c2.jpg img/c3.jpg dist/img/
           cp icon/logo.png dist/icon/
           cp font/Poppins-SemiBold.ttf dist/font/
           touch dist/.nojekyll

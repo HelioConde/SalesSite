@@ -129,8 +129,7 @@ try {
           ['announcement', '.announcement'],
           ['search-button', '.header-search button'],
           ['primary-button', '.product-card .btn-primary'],
-          ['banner-controls', '.banner-pause'],
-          ['main-text', '.page-heading p']
+          ['banner-controls', '.banner-pause']
         ];
         return targets.flatMap(([label, selector]) => {
           const el = document.querySelector(selector);

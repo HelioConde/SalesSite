@@ -110,6 +110,7 @@ test('diagnóstico visual exige autorização antes de capturar', async ({ page 
 
 
 test('carrossel recupera três banners antigos e navega por setas e indicadores', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/');
   const carousel = page.locator('#banner-carousel');
   await expect(carousel).toHaveAttribute('data-active-slide', '1');
@@ -127,10 +128,10 @@ test('carrossel recupera três banners antigos e navega por setas e indicadores'
   await carousel.focus();
   await page.keyboard.press('ArrowRight');
   await expect(carousel).toHaveAttribute('data-active-slide', '1');
-  await page.getByRole('button', { name: 'Retomar rotação do carrossel' }).click();
-  await expect(page.getByRole('button', { name: 'Pausar rotação do carrossel' })).toHaveAttribute('aria-pressed', 'false');
   await page.getByRole('button', { name: 'Pausar rotação do carrossel' }).click();
   await expect(page.getByRole('button', { name: 'Retomar rotação do carrossel' })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: 'Retomar rotação do carrossel' }).click();
+  await expect(page.getByRole('button', { name: 'Pausar rotação do carrossel' })).toHaveAttribute('aria-pressed', 'false');
 });
 
 test('as imagens originais c1, c2 e c3 são encontradas e carregadas', async ({ page }) => {

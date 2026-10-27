@@ -18,6 +18,8 @@ Projeto originalmente criado em 2022 e modernizado para estudo de front-end e ex
 - Quantidades, subtotais e total ilustrativo.
 - Finalização de simulação sem coleta de dados nem cobrança real.
 - Layout responsivo, menu mobile e estados de erro e vazio.
+- Carrossel restaurado com as três fotos originais (img/c1.jpg–c3.jpg): setas, indicadores, autoplay pausável, swipe e teclado.
+- Paleta azul dessaturada, com menos brilho e maior conforto visual.
 - Playwright e workflow de publicação controlada no GitHub Pages.
 - Diagnóstico visual com screenshots automáticos e captura manual autorizada por navegador.
 
@@ -79,3 +81,6 @@ Para tirar fotos reais da loja (desktop, mobile e página inteira), rode um serv
 No site, use o link Registrar problema visual para acessar diagnostico.html. A ferramenta pede permissão antes de capturar a aba escolhida e baixa uma imagem PNG localmente, que pode ser enviada ao ChatGPT. Não existe transmissão automática da tela.
 
 Detalhes: [Guia QA e captura](docs/QA.md).
+
+### Auditoria de conforto visual
+O Playwright fotografa 15 cenários e informa contraste, imagens quebradas e slide ativo. Consulte qa-snapshots/index.html e o artefato salessite-visual-qa no GitHub Actions.

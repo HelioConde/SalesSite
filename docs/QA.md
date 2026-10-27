@@ -57,3 +57,10 @@ Abra diagnostico.html (também disponível no GitHub Pages). Deixe a página da 
 ### Privacidade e segurança
 
 Não fotografe dados pessoais, senhas ou sessões autenticadas. Não envie screenshots automaticamente a terceiros. O workflow registra somente o site estático de demonstração; os PNGs de CI ficam disponíveis como artefatos no GitHub.
+
+## Rodada carrossel e cores (outubro/2026)
+- 15 cenários visuais, incluindo slides 2 e 3 e rotação pausada.
+- Verificação de contraste: faixa informativa, pesquisa, botão primário e pausa (mínimo 4,5:1).
+- report.json passa a registrar activeBanner, carouselImages, brokenImages, contrast, offenders, erros e requisições com falha.
+- Garantir as fotos originais c1/c2/c3 no dist/img após o deploy GitHub Pages.
+- Testar também swipe mobile e preferência por movimento reduzido.
