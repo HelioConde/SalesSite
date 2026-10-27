@@ -78,8 +78,9 @@ export function cartRows(products, cart) {
     if (!p) return '';
     return '<li class="cart-line">' +
       '<a href="' + urlFor(p) + '"><img src="./' + escapeHTML(p.image) + '" width="90" height="110" loading="lazy" alt="Capa de ' + escapeHTML(p.name) + '"></a>' +
-      '<div class="cart-line-info"><h3><a href="' + urlFor(p) + '">' + escapeHTML(p.name) + '</a></h3><span>' + money(p.price) + ' / unidade</span>' +
-      '<button class="text-button" type="button" data-remove="' + escapeHTML(id) + '">Remover</button></div>' +
+      '<div class="cart-line-info"><h3><a href="' + urlFor(p) + '">' + escapeHTML(p.name) + '</a></h3>' +
+      '<div class="cart-line-meta"><span>' + money(p.price) + ' / unidade</span>' +
+      '<button class="text-button" type="button" data-remove="' + escapeHTML(id) + '">Remover</button></div></div>' +
       '<div class="cart-line-right"><label for="qty-' + escapeHTML(id) + '">Quantidade</label>' +
       '<input id="qty-' + escapeHTML(id) + '" aria-label="Quantidade de ' + escapeHTML(p.name) + '" type="number" min="1" max="99" step="1" value="' + qty + '" data-qty="' + escapeHTML(id) + '">' +
       '<strong>' + money(p.price * qty) + '</strong></div></li>';
