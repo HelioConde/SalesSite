@@ -107,3 +107,87 @@ test('diagnóstico visual exige autorização antes de capturar', async ({ page 
   await expect(page.getByText('Nenhuma captura realizada.')).toBeVisible();
   await expect(page.getByRole('button', { name: /Baixar informações/ })).toBeDisabled();
 });
+
+
+test('carrossel recupera três banners antigos e navega por setas e indicadores', async ({ page }) => {
+  await page.goto('/');
+  const carousel = page.locator('#banner-carousel');
+  await expect(carousel).toHaveAttribute('data-active-slide', '1');
+  await expect(page.locator('[data-banner-slide]')).toHaveCount(3);
+  await expect(page.locator('[data-banner-dot]')).toHaveCount(3);
+  await expect(page.locator('[data-banner-slide].is-active h1')).toContainText('Ideias');
+  await page.getByRole('button', { name: 'Próximo banner' }).click();
+  await expect(carousel).toHaveAttribute('data-active-slide', '2');
+  await expect(page.locator('[data-banner-slide].is-active h1')).toContainText('Conhecimento');
+  await page.getByRole('button', { name: 'Banner anterior' }).click();
+  await expect(carousel).toHaveAttribute('data-active-slide', '1');
+  await page.locator('[data-banner-dot]').last().click();
+  await expect(carousel).toHaveAttribute('data-active-slide', '3');
+  await expect(page.locator('[data-banner-dot]').last()).toHaveAttribute('aria-current', 'true');
+  await carousel.focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(carousel).toHaveAttribute('data-active-slide', '1');
+  await page.getByRole('button', { name: 'Retomar rotação do carrossel' }).click();
+  await expect(page.getByRole('button', { name: 'Pausar rotação do carrossel' })).toHaveAttribute('aria-pressed', 'false');
+  await page.getByRole('button', { name: 'Pausar rotação do carrossel' }).click();
+  await expect(page.getByRole('button', { name: 'Retomar rotação do carrossel' })).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('as imagens originais c1, c2 e c3 são encontradas e carregadas', async ({ page }) => {
+  await page.goto('/');
+  const images = page.locator('[data-banner-slide] img');
+  await expect(images).toHaveCount(3);
+  const result = await images.evaluateAll(async imgs => {
+    return await Promise.all(imgs.map(async img => {
+      img.loading = 'eager';
+      await img.decode().catch(() => {});
+      return { src: img.getAttribute('src'), loaded: img.complete && img.naturalWidth > 0 };
+    }));
+  });
+  expect(result.map(x => x.src)).toEqual(['./img/c1.jpg', './img/c2.jpg', './img/c3.jpg']);
+  expect(result.every(x => x.loaded)).toBe(true);
+});
+
+test('contraste das ações primárias e faixa superior é confortável (WCAG AA)', async ({ page }) => {
+  await page.goto('/');
+  const results = await page.evaluate(() => {
+    const lum = text => {
+      const parts = text.match(/[\d.]+/g);
+      if (!parts || parts.length < 3) throw Error('Cor ilegível: ' + text);
+      const v = parts.slice(0,3).map(Number).map(value => {
+        const x = value / 255;
+        return x <= .04045 ? x / 12.92 : ((x + .055) / 1.055) ** 2.4;
+      });
+      return .2126 * v[0] + .7152 * v[1] + .0722 * v[2];
+    };
+    return ['.announcement', '.header-search button', '.product-card .btn-primary', '.banner-pause'].map(selector => {
+      const style = getComputedStyle(document.querySelector(selector));
+      const a = lum(style.color);
+      const b = lum(style.backgroundColor);
+      return { selector, ratio: (Math.max(a,b)+.05)/(Math.min(a,b)+.05) };
+    });
+  });
+  expect(results.every(x => x.ratio >= 4.5), JSON.stringify(results)).toBe(true);
+});
+
+test('carrossel pode ser controlado por swipe no celular', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'Apenas dispositivos mobile');
+  await page.goto('/');
+  const carousel = page.locator('#banner-carousel');
+  await expect(carousel).toHaveAttribute('data-active-slide','1');
+  await carousel.dispatchEvent('pointerdown', { pointerType: 'touch', clientX: 300, clientY: 150 });
+  await carousel.dispatchEvent('pointerup', { pointerType: 'touch', clientX: 100, clientY: 152 });
+  await expect(carousel).toHaveAttribute('data-active-slide','2');
+  await carousel.dispatchEvent('pointerdown', { pointerType: 'touch', clientX: 80, clientY: 152 });
+  await carousel.dispatchEvent('pointerup', { pointerType: 'touch', clientX: 290, clientY: 152 });
+  await expect(carousel).toHaveAttribute('data-active-slide','1');
+});
+
+test('movimento reduzido inicia rotação pausada e mantém botões manuais', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  await expect(page.locator('#banner-carousel')).toHaveAttribute('data-active-slide', '1');
+  await expect(page.getByRole('button', { name: 'Retomar rotação do carrossel' })).toHaveAttribute('aria-pressed', 'true');
+  await page.locator('[data-banner-next]').click();
+  await expect(page.locator('#banner-carousel')).toHaveAttribute('data-active-slide','2');
+});
