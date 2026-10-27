@@ -10,6 +10,9 @@ const rows = [];
 const cases = [
   { id: 'home-desktop', size: [1440, 900], route: './' },
   { id: 'home-wide', size: [1600, 900], route: './' },
+  { id: 'carousel-slide-2-desktop', size: [1440, 900], route: './', action: 'carousel-next' },
+  { id: 'carousel-slide-3-mobile', size: [390, 844], route: './', action: 'carousel-last' },
+  { id: 'carousel-paused-mobile', size: [390, 844], route: './', action: 'carousel-pause' },
   { id: 'home-tablet', size: [768, 1024], route: './' },
   { id: 'home-mobile', size: [390, 844], route: './' },
   { id: 'home-small', size: [320, 720], route: './' },
@@ -63,6 +66,17 @@ try {
       if (scenario.action === 'menu') {
         await page.locator('#menu-toggle').click();
       }
+      if (scenario.action === 'carousel-next') {
+        await page.locator('[data-banner-next]').click();
+      }
+      if (scenario.action === 'carousel-last') {
+        await page.locator('[data-banner-dot]').last().click();
+      }
+      if (scenario.action === 'carousel-pause') {
+        // Redução de movimento inicia o carrossel pausado; ativar e pausar testa o controle.
+        await page.locator('[data-banner-play]').click();
+        await page.locator('[data-banner-play]').click();
+      }
       await page.evaluate(async () => {
         await document.fonts.ready;
         for (const image of document.images) {
@@ -92,9 +106,44 @@ try {
           scrollHeight: document.documentElement.scrollHeight,
           horizontalOverflow: fullWidth > width + 1,
           productCards: document.querySelectorAll('#catalog-results .product-card').length,
+          activeBanner: document.querySelector('#banner-carousel')?.dataset.activeSlide || null,
+          brokenImages: [...document.images].filter(image => image.complete && image.naturalWidth === 0)
+            .map(image => image.getAttribute('src')).slice(0, 20),
+          carouselImages: [...document.querySelectorAll('[data-banner-slide] img')]
+            .map(img => ({ source: img.getAttribute('src'), loaded: img.complete && img.naturalWidth > 0 })),
           offenders
         };
       });
+
+      record.contrast = await page.evaluate(() => {
+        const luminance = str => {
+          const parts = str.match(/[\d.]+/g);
+          if (!parts || parts.length < 3) return null;
+          const rgb = parts.slice(0, 3).map(Number).map(v => {
+            const n = v / 255;
+            return n <= 0.04045 ? n / 12.92 : ((n + 0.055) / 1.055) ** 2.4;
+          });
+          return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+        };
+        const targets = [
+          ['announcement', '.announcement'],
+          ['search-button', '.header-search button'],
+          ['primary-button', '.product-card .btn-primary'],
+          ['banner-controls', '.banner-pause'],
+          ['main-text', '.page-heading p']
+        ];
+        return targets.flatMap(([label, selector]) => {
+          const el = document.querySelector(selector);
+          if (!el) return [];
+          const style = getComputedStyle(el);
+          const fg = luminance(style.color);
+          const bg = luminance(style.backgroundColor);
+          if (fg === null || bg === null) return [];
+          const ratio = +((Math.max(fg,bg) + 0.05) / (Math.min(fg,bg) + 0.05)).toFixed(2);
+          return [{ label, ratio, foreground: style.color, background: style.backgroundColor, pass: ratio >= 4.5 }];
+        });
+      });
+
       await page.screenshot({ path: path.join(output, record.viewportScreenshot), animations: 'disabled' });
       await page.screenshot({ path: path.join(output, record.fullScreenshot), fullPage: true, animations: 'disabled' });
     } catch (error) {
@@ -105,7 +154,7 @@ try {
     } finally {
       rows.push(record);
       await context.close();
-      console.log((record.error || record.metrics?.horizontalOverflow || errors.length ? 'ATENÇÃO ' : 'OK ') + scenario.id);
+      console.log((record.error || record.metrics?.horizontalOverflow || record.metrics?.brokenImages?.length || record.contrast?.some(c => !c.pass) || errors.length ? 'ATENÇÃO ' : 'OK ') + scenario.id);
     }
   }
 } finally {
@@ -119,15 +168,17 @@ const report = {
   cases: rows,
   totals: {
     count: rows.length,
-    failed: rows.filter(item => item.error || item.errors.length || item.failedRequests.length || item.metrics?.horizontalOverflow).length
+    failed: rows.filter(item => item.error || item.errors.length || item.failedRequests.length || item.metrics?.horizontalOverflow || item.metrics?.brokenImages?.length || item.contrast?.some(x => !x.pass)).length
   }
 };
 await writeFile(path.join(output, 'report.json'), JSON.stringify(report, null, 2) + '\n');
 const tiles = rows.map(item => {
-  const status = item.error || item.errors.length || item.failedRequests.length || item.metrics?.horizontalOverflow
+  const status = item.error || item.errors.length || item.failedRequests.length || item.metrics?.horizontalOverflow || item.metrics?.brokenImages?.length || item.contrast?.some(x => !x.pass)
     ? '<span class="status bad">Revisar</span>' : '<span class="status good">OK</span>';
   const description = [
     item.metrics?.horizontalOverflow ? 'Overflow horizontal identificado' : '',
+    item.metrics?.brokenImages?.length ? 'Imagens quebradas: ' + item.metrics.brokenImages.join(', ') : '',
+    item.contrast?.some(x => !x.pass) ? 'Contraste baixo: ' + item.contrast.filter(x => !x.pass).map(x => x.label + '=' + x.ratio).join(', ') : '',
     item.error || '',
     ...item.errors, ...item.failedRequests
   ].filter(Boolean).join(' | ');
